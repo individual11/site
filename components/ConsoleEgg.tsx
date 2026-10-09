@@ -12,8 +12,8 @@ const BANNER = String.raw`
 ██║██║ ╚████║██████╔╝██║ ╚████╔╝ ██║██████╔╝╚██████╔╝██║  ██║███████╗██║ ██║
 ╚═╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═══╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝ ╚═╝`;
 
-const ACID = "background:#d4ff00;color:#0a0a0a;font-weight:700;padding:2px 6px;";
-const INK = "background:#0a0a0a;color:#d4ff00;font-weight:700;padding:2px 6px;";
+const ACID = "background:#22ff66;color:#0a0a0a;font-weight:700;padding:2px 6px;";
+const INK = "background:#0a0a0a;color:#22ff66;font-weight:700;padding:2px 6px;";
 const PLAIN = "color:inherit;font-weight:400;";
 
 const MODES: ShaderMode[] = ["calm", "liquid", "chaos"];
@@ -35,7 +35,7 @@ export default function ConsoleEgg() {
     if (greeted) return;
     greeted = true;
 
-    console.log(`%c${BANNER}`, "color:#d4ff00;background:#0a0a0a;font-family:monospace;line-height:1.1;");
+    console.log(`%c${BANNER}`, "color:#22ff66;background:#0a0a0a;font-family:monospace;line-height:1.1;");
     console.log("%c YOU OPENED DEVTOOLS. %c good instinct. type %chelp()%c to see what else is in here.", ACID, PLAIN, INK, PLAIN);
 
     window.help = () => {

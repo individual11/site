@@ -19,7 +19,7 @@ void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
 `;
 
 // Domain-warped fbm (after Inigo Quilez) mapped to ink/paper,
-// with acid-green streaks riding the contour lines.
+// with neon-green streaks riding the contour lines.
 const FRAG = `
 #ifdef GL_FRAGMENT_PRECISION_HIGH
 precision highp float;
@@ -71,7 +71,7 @@ void main() {
   // the cursor stirs the liquid: a local swirl that fades with distance
   vec2 d = p - m;
   float infl = u_mouseStr * exp(-dot(d, d) * 5.0);
-  float ang = infl * 2.8;
+  float ang = infl * 1.4;
   p = m + mat2(cos(ang), -sin(ang), sin(ang), cos(ang)) * d;
 
   p *= 1.5;
@@ -92,7 +92,7 @@ void main() {
 
   float band = abs(fract(f * 5.0 + length(r) * 2.0) - 0.5);
   float streak = smoothstep(0.05, 0.0, band) * smoothstep(0.5, 0.75, length(q));
-  col = mix(col, vec3(0.83, 1.0, 0.0), streak);
+  col = mix(col, vec3(0.13, 1.0, 0.4), streak);
 
   col += (hash(gl_FragCoord.xy + fract(t)) - 0.5) * 0.07;
   gl_FragColor = vec4(col, 1.0);

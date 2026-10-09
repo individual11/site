@@ -28,7 +28,7 @@ export default async function Image() {
           // a frozen nod to the liquid shader
           backgroundImage: [
             "radial-gradient(circle at 78% 22%, #f2f0e9 0%, rgba(242,240,233,0) 32%)",
-            "radial-gradient(circle at 90% 85%, #d4ff00 0%, rgba(212,255,0,0) 18%)",
+            "radial-gradient(circle at 90% 85%, #22ff66 0%, rgba(34,255,102,0) 18%)",
             "radial-gradient(circle at 60% 110%, #6b6b66 0%, rgba(107,107,102,0) 40%)",
           ].join(", "),
         }}
@@ -44,7 +44,7 @@ export default async function Image() {
             color: "#0a0a0a",
             backgroundColor: "#f2f0e9",
             border: "6px solid #0a0a0a",
-            boxShadow: "14px 14px 0 #d4ff00",
+            boxShadow: "14px 14px 0 #22ff66",
             padding: "18px 22px 10px",
           }}
         >
@@ -60,7 +60,7 @@ export default async function Image() {
             fontFamily: "JetBrains Mono",
             fontSize: 38,
             color: "#0a0a0a",
-            backgroundColor: "#d4ff00",
+            backgroundColor: "#22ff66",
             border: "6px solid #0a0a0a",
             padding: "14px 24px",
             transform: "rotate(-1.2deg)",
@@ -77,7 +77,7 @@ export default async function Image() {
             fontFamily: "JetBrains Mono",
             fontSize: 26,
             letterSpacing: 2,
-            color: "#d4ff00",
+            color: "#22ff66",
           }}
         >
           INDIVIDUAL11.COM
