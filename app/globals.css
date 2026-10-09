@@ -1,0 +1,186 @@
+:root {
+  --ink: #0a0a0a;
+  --paper: #f2f0e9;
+  --acid: #d4ff00;
+  --line: 4px;
+  --drop: 8px;
+  /* ink drop shadow with an acid rim, so it reads on both light and dark liquid */
+  --shadow: var(--drop) var(--drop) 0 var(--ink), var(--drop) var(--drop) 0 2px var(--acid);
+  --shadow-sm: 6px 6px 0 var(--ink), 6px 6px 0 2px var(--acid);
+  --gutter: clamp(16px, 4vw, 48px);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  /* shown if WebGL is unavailable, and for the instant before the first frame */
+  background:
+    radial-gradient(60% 50% at 30% 30%, #3a3a36 0%, transparent 70%),
+    radial-gradient(50% 60% at 75% 70%, #2a2a27 0%, transparent 70%),
+    var(--ink);
+  color: var(--ink);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+.shader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(20px, 3vw, 32px);
+  padding: var(--gutter);
+  padding-bottom: calc(var(--gutter) + 56px);
+  max-width: 1100px;
+}
+
+.name {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: clamp(3.25rem, 12vw, 9.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  background: var(--paper);
+  border: var(--line) solid var(--ink);
+  box-shadow: var(--shadow);
+  padding: 0.12em 0.14em 0.08em;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.tagline {
+  font-weight: 700;
+  font-size: clamp(1.05rem, 2.6vw, 1.75rem);
+  background: var(--acid);
+  border: var(--line) solid var(--ink);
+  padding: 0.5em 0.75em;
+  transform: rotate(-1.2deg);
+  box-shadow: var(--drop) var(--drop) 0 var(--ink), var(--drop) var(--drop) 0 2px var(--paper);
+  margin-left: clamp(8px, 3vw, 40px);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font: inherit;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--paper);
+  border: var(--line) solid var(--ink);
+  box-shadow: var(--shadow-sm);
+  padding: 0.7em 1em;
+  cursor: pointer;
+  transition:
+    transform 80ms ease-out,
+    box-shadow 80ms ease-out,
+    background-color 80ms ease-out;
+}
+
+.btn:hover {
+  background: var(--acid);
+}
+
+.btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 var(--ink), 0 0 0 0 var(--acid);
+}
+
+.btn:focus-visible {
+  outline: var(--line) solid var(--acid);
+  outline-offset: 4px;
+}
+
+.email {
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.btn-email {
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+
+.btn-copy {
+  border-left: 0;
+  background: var(--acid);
+  min-width: 6.5em;
+  justify-content: center;
+}
+
+.btn-copy:hover {
+  background: var(--ink);
+  color: var(--acid);
+}
+
+.footer {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px var(--gutter);
+  background: var(--ink);
+  color: var(--paper);
+  border-top: var(--line) solid var(--acid);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.footer .hint {
+  color: var(--acid);
+}
+
+@media (max-width: 480px) {
+  .email {
+    width: 100%;
+  }
+  .btn-email {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
