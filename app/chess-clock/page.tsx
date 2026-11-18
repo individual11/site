@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     siteName: "individual11",
     type: "website",
   },
-  twitter: { card: "summary_large_image", title: APP_NAME, description: APP_TAGLINE },
+  twitter: { card: "summary", title: APP_NAME, description: APP_TAGLINE },
 };
 
 const SHOTS = [

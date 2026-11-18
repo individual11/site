@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   title: `${APP_NAME}: Privacy Policy`,
   description: `${APP_NAME} collects no data. No ads, no accounts, no analytics.`,
   alternates: { canonical: "/chess-clock/privacy" },
+  openGraph: {
+    title: `${APP_NAME}: Privacy Policy`,
+    description: `${APP_NAME} collects no data. No ads, no accounts, no analytics.`,
+    url: "/chess-clock/privacy",
+    siteName: "individual11",
+    type: "website",
+  },
+  twitter: { card: "summary", title: `${APP_NAME}: Privacy Policy` },
 };
 
 export default function ChessClockPrivacy() {
