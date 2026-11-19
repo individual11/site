@@ -1,0 +1,504 @@
+/*
+ * Modern Chess Clock pages (/chess-clock, /chess-clock/privacy).
+ * Laid out like the clock: the header is the black player's half (Classic dark),
+ * the body the white player's half (Classic light). Colours from the app's
+ * ClockTheme.swift; type follows the app (system font, 22/17/13 scale, thin digits).
+ * Everything is scoped under .cc so the homepage styles are untouched.
+ */
+
+/* Overscroll at the top and bottom shows the dark header/footer colour. */
+body:has(> .cc) {
+  background: #212e3d;
+}
+
+.cc {
+  --light: #f2f2f2;
+  --dark: #212e3d;
+  --muted-on-light: #5e6773;
+  --muted-on-dark: #a9b0b9;
+  --rule: rgba(33, 46, 61, 0.14);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  --gutter: 16px;
+
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--light);
+  color: var(--dark);
+  font: 17px/1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 720px) {
+  .cc {
+    --gutter: 40px;
+  }
+}
+
+.cc a {
+  color: inherit;
+}
+
+.cc a:focus-visible,
+.cc summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.cc-wrap {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Top half: the black player's side ---------- */
+
+.cc-top {
+  background: var(--dark);
+  color: var(--light);
+  padding-top: 20px;
+}
+
+.cc-back {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--muted-on-dark) !important;
+  text-decoration: none;
+}
+
+.cc-back:hover {
+  color: var(--light) !important;
+}
+
+.cc-hero {
+  display: grid;
+  gap: 28px;
+  padding: 48px 0 56px;
+}
+
+.cc-hero-sm {
+  padding: 40px 0 48px;
+}
+
+@media (min-width: 900px) {
+  .cc-hero {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 40px;
+    padding: 72px 0 88px;
+  }
+  .cc-hero-sm {
+    grid-template-columns: 1fr;
+    padding: 56px 0 64px;
+  }
+}
+
+.cc-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 22px;
+  display: block;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.12);
+}
+
+@media (min-width: 900px) {
+  .cc-icon {
+    width: 128px;
+    height: 128px;
+    border-radius: 29px;
+  }
+}
+
+.cc h1 {
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(40px, 9vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.cc-tagline {
+  margin-top: 14px;
+  font-size: 17px;
+  color: var(--muted-on-dark);
+  max-width: 34ch;
+}
+
+@media (min-width: 900px) {
+  .cc-tagline {
+    font-size: 20px;
+  }
+}
+
+/* Outlined like the app's "Clock Settings" button. */
+.cc-store {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 22px 12px 18px;
+  border: 1.5px solid var(--light);
+  border-radius: 12px;
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.cc-store:hover {
+  background: var(--light);
+  color: var(--dark) !important;
+}
+
+.cc-store svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.cc-store small {
+  display: block;
+  font-size: 11px;
+  line-height: 1.1;
+  opacity: 0.8;
+}
+
+.cc-store b {
+  display: block;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+/* ---------- Screens sit across the split ---------- */
+
+.cc-split {
+  background: linear-gradient(var(--dark) 0 50%, var(--light) 50% 100%);
+}
+
+.cc-shots {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0 var(--gutter) 8px;
+  max-width: 1040px;
+  margin: 0 auto;
+  scrollbar-width: none;
+}
+
+.cc-shots::-webkit-scrollbar {
+  display: none;
+}
+
+.cc-shots figure {
+  flex: 0 0 62%;
+  scroll-snap-align: center;
+}
+
+@media (min-width: 720px) {
+  .cc-shots {
+    overflow: visible;
+  }
+  .cc-shots figure {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.cc-shots img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 26px;
+  background: var(--light);
+  box-shadow:
+    0 0 0 1px rgba(33, 46, 61, 0.18),
+    0 18px 40px -18px rgba(10, 16, 24, 0.45);
+}
+
+@media (min-width: 720px) {
+  .cc-shots img {
+    border-radius: 22px;
+  }
+}
+
+.cc-shots figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted-on-light);
+}
+
+/* ---------- Bottom half: the white player's side ---------- */
+
+.cc main {
+  flex: 1;
+}
+
+.cc section {
+  padding-top: 64px;
+}
+
+.cc h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.cc-sub {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--muted-on-light);
+}
+
+.cc-plans {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 720px) {
+  .cc-plans {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cc-plan {
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.cc-free {
+  border: 1.5px solid var(--dark);
+}
+
+.cc-pro {
+  background: var(--dark);
+  color: var(--light);
+}
+
+.cc-pro .cc-sub {
+  color: var(--muted-on-dark);
+}
+
+.cc-plan-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cc-plan h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.cc-price {
+  font-size: 13px;
+  color: var(--muted-on-light);
+  text-align: right;
+}
+
+.cc-pro .cc-price {
+  color: var(--muted-on-dark);
+}
+
+.cc-plan ul {
+  list-style: none;
+}
+
+.cc-plan li {
+  padding: 10px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.cc-pro li {
+  border-color: rgba(242, 242, 242, 0.14);
+}
+
+.cc-swatches {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 4px;
+  vertical-align: -3px;
+}
+
+/* A scheme swatch: dark half over light half, like the clock. */
+.cc-sw {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  background: linear-gradient(var(--d) 0 50%, var(--l) 50%);
+  box-shadow: 0 0 0 1px rgba(127, 127, 127, 0.35);
+}
+
+.cc-steps {
+  list-style: none;
+  display: grid;
+}
+
+@media (min-width: 720px) {
+  .cc-steps {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+.cc-steps li {
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+}
+
+/* Thin numerals, like the clock digits. */
+.cc-n {
+  display: block;
+  margin-bottom: 10px;
+  font-family: var(--display);
+  font-weight: 100;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.cc details {
+  border-top: 1px solid var(--rule);
+}
+
+.cc details:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+
+.cc summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 36px 18px 0;
+  position: relative;
+  font-weight: 500;
+}
+
+.cc summary::-webkit-details-marker {
+  display: none;
+}
+
+.cc summary::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1.5px solid;
+  border-bottom: 1.5px solid;
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.cc details[open] summary::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+.cc details p {
+  padding-bottom: 20px;
+  max-width: 60ch;
+  color: var(--muted-on-light);
+}
+
+.cc details strong {
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.cc-two {
+  display: grid;
+  gap: 48px;
+}
+
+@media (min-width: 900px) {
+  .cc-two {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+  }
+}
+
+.cc-privacy p {
+  margin-bottom: 12px;
+  max-width: 60ch;
+}
+
+.cc-note {
+  font-size: 15px;
+  color: var(--muted-on-light);
+  margin-bottom: 16px;
+}
+
+.cc-link {
+  font-weight: 500;
+  text-underline-offset: 3px;
+}
+
+.cc-mail {
+  display: inline-block;
+  max-width: 100%;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: var(--dark);
+  color: var(--light) !important;
+  text-decoration: none;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.cc-mail:hover {
+  opacity: 0.9;
+}
+
+/* Privacy policy text. */
+.cc-prose section {
+  padding-top: 48px;
+  max-width: 65ch;
+}
+
+.cc-prose p {
+  color: var(--dark);
+}
+
+/* ---------- Footer ---------- */
+
+.cc-footer {
+  margin-top: 88px;
+  background: var(--dark);
+  color: var(--muted-on-dark);
+  font-size: 13px;
+}
+
+.cc-footer .cc-wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.cc-footer a {
+  text-decoration: none;
+}
+
+.cc-footer a:hover {
+  color: var(--light);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cc-store,
+  .cc summary::after {
+    transition: none;
+  }
+}
