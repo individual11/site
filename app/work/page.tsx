@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ElevenField from "@/components/work/ElevenField";
+import NextSection from "@/components/work/NextSection";
 import CopyEmail from "@/components/CopyEmail";
 import { PROJECTS, type Project } from "@/lib/projects";
 import { WORK_MEDIA } from "@/lib/work-media";
@@ -64,12 +65,19 @@ function FeaturedCard({ p, index }: { p: Project; index: number }) {
 export default function WorkPage() {
   const featured = PROJECTS.filter((p) => p.featured);
   const more = PROJECTS.filter((p) => !p.featured);
+  const stops = [
+    { id: "top", label: "Intro" },
+    ...featured.map((p) => ({ id: p.slug, label: p.title })),
+    { id: "more", label: "More work" },
+    { id: "contact", label: "Contact" },
+  ];
 
   return (
     <>
       <ElevenField fontFamily={workDisplay.style.fontFamily} />
+      <NextSection stops={stops} />
       <main className="w-main">
-        <section className="w-sec" data-formation="eleven" data-side="R" aria-labelledby="w-title">
+        <section className="w-sec" id="top" data-formation="eleven" data-side="R" aria-labelledby="w-title">
           <div className="w-card w-card--ink w-hero">
             <p className="w-eyebrow">
               <em>Work</em> · {NAME}
@@ -86,6 +94,7 @@ export default function WorkPage() {
         {featured.map((p, i) => (
           <section
             key={p.slug}
+            id={p.slug}
             className={`w-sec ${i % 2 ? "w-sec--right" : ""}`}
             data-formation={p.slug}
             data-side={i % 2 ? "L" : "R"}
@@ -95,7 +104,7 @@ export default function WorkPage() {
           </section>
         ))}
 
-        <section className="w-more" aria-labelledby="w-more-title">
+        <section className="w-more" id="more" aria-labelledby="w-more-title">
           <h2 id="w-more-title" className="w-more-title">
             More work
           </h2>

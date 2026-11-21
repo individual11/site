@@ -122,6 +122,79 @@
   color: var(--w-accent);
 }
 
+/* ---------- scroll snapping ----------
+   "proximity" settles into a section when you stop near one, but never
+   fights a deliberate scroll (and never traps you in a tall section). */
+/* Snap to the true viewport centre: that's where the particle field treats a
+   formation as fully formed, so no scroll-padding for the sticky bar. */
+html:has(.w-main) {
+  scroll-snap-type: y proximity;
+}
+
+.w-sec {
+  scroll-snap-align: center;
+}
+
+.w-more {
+  scroll-snap-align: start;
+}
+
+/* ---------- next-section button ---------- */
+.w-next {
+  position: fixed;
+  z-index: 9;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 32px);
+  padding: 10px 14px;
+  font: 400 12px/1.2 var(--w-font-mono), ui-monospace, monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--w-ink);
+  background: color-mix(in srgb, var(--w-bg) 78%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in srgb, var(--w-ink) 35%, transparent);
+  cursor: pointer;
+  transition: opacity 0.25s, border-color 0.15s, color 0.15s;
+}
+
+.w-next:hover {
+  color: var(--w-accent);
+  border-color: var(--w-accent);
+}
+
+.w-next span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.w-next b {
+  font-weight: 700;
+}
+
+.w-next i {
+  font-style: normal;
+  display: inline-block;
+  animation: w-nudge 2.4s ease-in-out infinite;
+}
+
+.w-next[data-hidden="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes w-nudge {
+  0%, 70%, 100% { transform: translateY(0); }
+  80% { transform: translateY(3px); }
+  90% { transform: translateY(0); }
+}
+
 /* ---------- scroll sections ---------- */
 .w-main {
   position: relative;
@@ -538,7 +611,11 @@
 @media (max-width: 759px) {
   .w-sec {
     align-items: flex-end;
-    padding-block: 46svh 24px;
+    padding-block: 46svh 72px; /* room for the next button */
+  }
+
+  .w-next {
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
   }
 
   .w-sec:first-child {
@@ -552,9 +629,32 @@
     padding: 20px;
   }
 
-  /* keep the cards short so the formation above stays visible */
-  .w-card-media {
+  /* keep the cards short so the formation above and the next button stay
+     visible; the project page has the full details */
+  .w-card-media,
+  .w-card .w-awards,
+  .w-card .w-role {
     display: none;
+  }
+
+  .w-card {
+    gap: 10px;
+  }
+
+  .w-card .w-stats {
+    gap: 8px 20px;
+  }
+
+  .w-card .w-stats div {
+    flex: 0 1 auto;
+  }
+
+  .w-card .w-stats dd {
+    font-size: 1.15rem;
+  }
+
+  .w-card .w-stats dt {
+    font-size: 10px;
   }
 
   .w-detail-body {
@@ -568,6 +668,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .w-next i {
+    animation: none;
+  }
+
   .w-tile a,
   .w-card-media img,
   .w-go {
