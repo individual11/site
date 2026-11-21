@@ -1,0 +1,576 @@
+/* Portfolio (/work). Eleven concept, Signal palette.
+   Colours arrive as --w-* custom properties from lib/palette.ts (see layout.tsx).
+   Layout: fixed particle canvas behind scroll sections; opaque brutalist cards
+   alternate sides, particles take the other half. On phones the particles sit in
+   the top half of the screen and the cards in the bottom half. */
+
+.work {
+  --w-gut-l: max(16px, env(safe-area-inset-left, 0px));
+  --w-gut-r: max(16px, env(safe-area-inset-right, 0px));
+  --w-border: 3px;
+  --w-drop: 8px;
+  min-height: 100svh;
+  background: var(--w-bg);
+  color: var(--w-ink);
+  font-family: var(--w-font-display), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color-scheme: dark;
+}
+
+.work a {
+  color: inherit;
+}
+
+.work :focus-visible {
+  outline: 2px solid var(--w-accent);
+  outline-offset: 3px;
+}
+
+.work-field {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+/* ---------- top bar ---------- */
+.w-bar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 14px;
+  padding-left: var(--w-gut-l);
+  padding-right: var(--w-gut-r);
+  background: color-mix(in srgb, var(--w-bg) 86%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid color-mix(in srgb, var(--w-ink) 16%, transparent);
+  font-family: var(--w-font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.w-brand {
+  text-decoration: none;
+}
+
+.w-brand b {
+  color: var(--w-accent);
+}
+
+.w-nav {
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+
+.w-nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.w-nav a:hover {
+  color: var(--w-accent);
+}
+
+/* ---------- shared type ---------- */
+.w-eyebrow {
+  display: block;
+  margin: 0;
+  font: 400 12px/1.35 var(--w-font-mono), ui-monospace, monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--w-dim);
+}
+
+.w-eyebrow em {
+  font-style: normal;
+  color: var(--w-accent);
+}
+
+.work h1,
+.work h2 {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.w-lede {
+  margin: 0;
+  font-size: 1.08rem;
+  max-width: 46ch;
+}
+
+.w-role {
+  margin: 0;
+  font: 400 13px/1.45 var(--w-font-mono), ui-monospace, monospace;
+  color: var(--w-dim);
+}
+
+.w-hint {
+  margin: 0;
+  font: 400 12px/1.5 var(--w-font-mono), ui-monospace, monospace;
+  color: var(--w-accent);
+}
+
+/* ---------- scroll sections ---------- */
+.w-main {
+  position: relative;
+  z-index: 1;
+  padding-left: var(--w-gut-l);
+  padding-right: var(--w-gut-r);
+}
+
+.w-sec {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: 96px;
+  pointer-events: none;
+}
+
+.w-sec:first-child {
+  min-height: calc(100svh - 50px);
+}
+
+.w-sec--right .w-card {
+  margin-left: auto;
+}
+
+.w-card {
+  --w-shadow: var(--w-logic);
+  pointer-events: auto;
+  position: relative;
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  max-width: min(460px, 40vw);
+  min-width: 0;
+  padding: 26px;
+  background: var(--w-surface);
+  border: var(--w-border) solid var(--w-ink);
+  box-shadow: var(--w-drop) var(--w-drop) 0 var(--w-shadow);
+}
+
+.w-card--creative {
+  --w-shadow: var(--w-creative);
+}
+
+.w-card--ink {
+  --w-shadow: var(--w-ink);
+}
+
+.w-hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+}
+
+.w-card h2 {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.w-card h2 a {
+  text-decoration: none;
+}
+
+.w-card h2 a:hover {
+  color: var(--w-accent);
+}
+
+.w-card-media {
+  display: block;
+  margin: -26px -26px 4px;
+  border-bottom: var(--w-border) solid var(--w-ink);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--w-bg);
+}
+
+.w-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(0.25) contrast(1.05);
+  transition: filter 0.3s;
+}
+
+.w-card-media:hover img {
+  filter: none;
+}
+
+/* Stats wrap as whole units: a value never breaks mid-number ("99.9999%"). */
+.w-stats {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  font-variant-numeric: tabular-nums;
+}
+
+.w-stats div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px;
+  flex: 1 1 auto;
+  max-width: 100%;
+}
+
+.w-stats dd {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--w-accent);
+  white-space: nowrap;
+}
+
+.w-stats dt {
+  font: 400 11px/1.3 var(--w-font-mono), ui-monospace, monospace;
+  color: var(--w-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.w-awards {
+  margin: 0;
+  font: 700 12px/1.5 var(--w-font-mono), ui-monospace, monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.w-go {
+  justify-self: start;
+  font: 700 12px/1 var(--w-font-mono), ui-monospace, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 12px 14px;
+  border: 2px solid var(--w-ink);
+  transition: background 0.15s, color 0.15s;
+}
+
+.w-go:hover {
+  background: var(--w-accent);
+  border-color: var(--w-accent);
+  color: #07090c;
+}
+
+/* ---------- more work ---------- */
+.w-more {
+  position: relative;
+  padding-block: 96px;
+  display: grid;
+  gap: 28px;
+}
+
+.w-more-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  justify-self: start;
+  padding: 6px 12px;
+  background: var(--w-bg);
+}
+
+.w-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 22px;
+}
+
+.w-tile a {
+  height: 100%;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 0 0 18px;
+  background: var(--w-surface);
+  border: 2px solid var(--w-ink);
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.w-tile a:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--w-logic);
+}
+
+.w-tile img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  border-bottom: 2px solid var(--w-ink);
+  margin-bottom: 6px;
+}
+
+.w-tile .w-eyebrow,
+.w-tile-title,
+.w-tile-sum {
+  padding-inline: 18px;
+}
+
+.w-tile-title {
+  font-weight: 800;
+  font-size: 1.35rem;
+  line-height: 1.1;
+}
+
+.w-tile-sum {
+  color: var(--w-dim);
+  font-size: 0.95rem;
+}
+
+/* ---------- contact ---------- */
+.w-email {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.w-email a {
+  font: 400 15px/1.4 var(--w-font-mono), ui-monospace, monospace;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--w-ink) 40%, transparent);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+/* CopyEmail renders the home page's .btn; restyle it for the dark page */
+.work .btn-copy {
+  font: 700 12px/1 var(--w-font-mono), ui-monospace, monospace;
+  letter-spacing: 0.08em;
+  padding: 12px 14px;
+  background: var(--w-accent);
+  color: #07090c;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+/* ---------- project detail ---------- */
+.w-detail {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-block: 32px 96px;
+  padding-left: var(--w-gut-l);
+  padding-right: var(--w-gut-r);
+  display: grid;
+  gap: 36px;
+}
+
+.w-back {
+  justify-self: start;
+  font: 400 13px/1 var(--w-font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+}
+
+.w-back:hover {
+  color: var(--w-accent);
+}
+
+.w-detail-head {
+  display: grid;
+  gap: 14px;
+}
+
+.w-detail-head h1 {
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+}
+
+.w-loop,
+.w-hero-img {
+  margin: 0;
+  position: relative;
+  border: var(--w-border) solid var(--w-ink);
+  box-shadow: var(--w-drop) var(--w-drop) 0 var(--w-logic);
+  background: #000;
+}
+
+.w-loop video,
+.w-hero-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.w-loop-btn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  font: 700 11px/1 var(--w-font-mono), ui-monospace, monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 9px 11px;
+  background: color-mix(in srgb, var(--w-bg) 80%, transparent);
+  color: var(--w-ink);
+  border: 1px solid var(--w-ink);
+  cursor: pointer;
+}
+
+.w-detail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.w-copy {
+  display: grid;
+  gap: 18px;
+  font-size: 1.12rem;
+  max-width: 62ch;
+}
+
+.w-copy p {
+  margin: 0;
+}
+
+.w-facts {
+  display: grid;
+  gap: 26px;
+  padding: 22px;
+  background: var(--w-surface);
+  border: 2px solid var(--w-ink);
+}
+
+.w-stats--stack {
+  flex-direction: column;
+}
+
+.w-facts h2.w-eyebrow {
+  margin-bottom: 8px;
+}
+
+.w-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.w-list a:hover {
+  color: var(--w-accent);
+}
+
+.w-tags {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.w-tags li {
+  font: 400 11px/1 var(--w-font-mono), ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 7px 8px;
+  border: 1px solid color-mix(in srgb, var(--w-ink) 40%, transparent);
+}
+
+.w-gallery {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.w-gallery li {
+  border: 2px solid var(--w-ink);
+  background: #000;
+}
+
+.w-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.w-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  border-top: 1px solid color-mix(in srgb, var(--w-ink) 18%, transparent);
+  padding-top: 26px;
+}
+
+.w-pager a {
+  display: grid;
+  gap: 6px;
+  font-weight: 800;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  text-decoration: none;
+}
+
+.w-pager a:hover {
+  color: var(--w-accent);
+}
+
+.w-pager .is-next {
+  text-align: right;
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 759px) {
+  .w-sec {
+    align-items: flex-end;
+    padding-block: 46svh 24px;
+  }
+
+  .w-sec:first-child {
+    min-height: calc(100svh - 50px);
+  }
+
+  .w-card,
+  .w-sec--right .w-card {
+    max-width: 100%;
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  /* keep the cards short so the formation above stays visible */
+  .w-card-media {
+    display: none;
+  }
+
+  .w-detail-body {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .w-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .w-tile a,
+  .w-card-media img,
+  .w-go {
+    transition: none;
+  }
+}

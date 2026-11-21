@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LiquidShader from "@/components/LiquidShader";
 import ConsoleEgg from "@/components/ConsoleEgg";
 import CopyEmail from "@/components/CopyEmail";
@@ -17,6 +18,9 @@ export default function Home() {
         </h1>
         <p className="tagline">{TAGLINE}</p>
         <nav className="links" aria-label="Elsewhere">
+          <Link className="btn" href="/work">
+            Work <span aria-hidden="true">→</span>
+          </Link>
           <a className="btn" href={LINKS.linkedin} target="_blank" rel="me noopener">
             LinkedIn <span aria-hidden="true">↗</span>
           </a>
