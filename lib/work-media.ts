@@ -16,7 +16,7 @@ export const WORK_MEDIA: Record<string, { images: WorkImage[]; loop?: WorkLoop }
       "poster": "/work/donate-life/loop-poster.jpg",
       "width": 960,
       "height": 540,
-      "alt": "Clip from The World's Biggest Asshole"
+      "alt": "Clip from The World's Biggest Asshole: Coleman Sweeney in his robe, being himself"
     }
   },
   "find-new-roads": {
@@ -203,13 +203,55 @@ export const WORK_MEDIA: Record<string, { images: WorkImage[]; loop?: WorkLoop }
         "src": "/work/lorenz-attractor/01.jpg",
         "width": 971,
         "height": 1600,
-        "alt": "Lorenz attractor print in white on blue"
+        "alt": "Lorenz attractor print: dense white loops on blue"
       },
       {
         "src": "/work/lorenz-attractor/02.jpg",
         "width": 971,
         "height": 1600,
-        "alt": "Lorenz attractor print on gray"
+        "alt": "Lorenz attractor print: glowing blue loops on gray"
+      },
+      {
+        "src": "/work/lorenz-attractor/03.jpg",
+        "width": 971,
+        "height": 1600,
+        "alt": "Lorenz attractor print: wide open rings on blue"
+      },
+      {
+        "src": "/work/lorenz-attractor/04.jpg",
+        "width": 971,
+        "height": 1600,
+        "alt": "Lorenz attractor print: wide open rings on gray"
+      },
+      {
+        "src": "/work/lorenz-attractor/05.jpg",
+        "width": 971,
+        "height": 1600,
+        "alt": "Lorenz attractor print: tight figure eight on blue"
+      },
+      {
+        "src": "/work/lorenz-attractor/06.jpg",
+        "width": 971,
+        "height": 1600,
+        "alt": "Lorenz attractor print: tight figure eight on gray"
+      },
+      {
+        "src": "/work/lorenz-attractor/07.jpg",
+        "width": 971,
+        "height": 1600,
+        "alt": "Lorenz attractor print: a single trailing loop on blue"
+      },
+      {
+        "src": "/work/lorenz-attractor/08.jpg",
+        "width": 971,
+        "height": 1600,
+        "alt": "Lorenz attractor print: a single trailing loop on gray"
+      },
+      {
+        "src": "/work/lorenz-attractor/09.jpg",
+        "width": 1559,
+        "height": 1600,
+        "alt": "The Processing tool for tuning the attractor and exporting vector PDFs"
       }
     ]
   },

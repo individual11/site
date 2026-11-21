@@ -126,13 +126,30 @@
    "proximity" settles into a section when you stop near one, but never
    fights a deliberate scroll (and never traps you in a tall section). */
 /* Snap to the true viewport centre: that's where the particle field treats a
-   formation as fully formed, so no scroll-padding for the sticky bar. */
+   formation as fully formed, so no scroll-padding for the sticky bar.
+   The snap target is a 1px marker at each section's centre, not the section:
+   a section taller than the screen (common on phones) counts as "covering"
+   the viewport and browsers stop snapping inside it. */
 html:has(.w-main) {
   scroll-snap-type: y proximity;
 }
 
-.w-sec {
+/* Touch scrolling flings past a proximity threshold, so phones and tablets
+   always settle on a section. The tall "More work" grid still scrolls freely. */
+@media (pointer: coarse) {
+  html:has(.w-main) {
+    scroll-snap-type: y mandatory;
+  }
+}
+
+.w-snap {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 1px;
+  height: 1px;
   scroll-snap-align: center;
+  pointer-events: none;
 }
 
 .w-more {
@@ -204,6 +221,7 @@ html:has(.w-main) {
 }
 
 .w-sec {
+  position: relative;
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -483,6 +501,19 @@ html:has(.w-main) {
   height: auto;
 }
 
+/* Tall artwork (posters, prints) shouldn't fill two screens; the frame
+   shrinks to the image instead of letterboxing it */
+.w-hero-img {
+  justify-self: center;
+}
+
+.w-hero-img img {
+  max-height: 80svh;
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
 .w-loop-btn {
   position: absolute;
   right: 12px;
@@ -561,14 +592,24 @@ html:has(.w-main) {
   border: 1px solid color-mix(in srgb, var(--w-ink) 40%, transparent);
 }
 
+/* 4-column grid: landscape images span 2, tall ones span 1, packed densely */
 .w-gallery {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-flow: dense;
   gap: 18px;
   align-items: start;
+}
+
+.w-gallery li {
+  grid-column: span 2;
+}
+
+.w-gallery li.is-tall {
+  grid-column: span 1;
 }
 
 .w-gallery li {
@@ -663,7 +704,7 @@ html:has(.w-main) {
   }
 
   .w-gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

@@ -78,6 +78,7 @@ export default function WorkPage() {
       <NextSection stops={stops} />
       <main className="w-main">
         <section className="w-sec" id="top" data-formation="eleven" data-side="R" aria-labelledby="w-title">
+          <span className="w-snap" aria-hidden="true" />
           <div className="w-card w-card--ink w-hero">
             <p className="w-eyebrow">
               <em>Work</em> · {NAME}
@@ -100,6 +101,7 @@ export default function WorkPage() {
             data-side={i % 2 ? "L" : "R"}
             aria-label={p.title}
           >
+            <span className="w-snap" aria-hidden="true" />
             <FeaturedCard p={p} index={i} />
           </section>
         ))}
@@ -128,6 +130,7 @@ export default function WorkPage() {
         </section>
 
         <section className="w-sec" id="contact" data-formation="eleven-mixed" data-side="R" aria-labelledby="w-contact">
+          <span className="w-snap" aria-hidden="true" />
           <div className="w-card w-card--logic">
             <p className="w-eyebrow">Contact</p>
             <h2 id="w-contact">Let&apos;s build something.</h2>
