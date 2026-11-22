@@ -4,17 +4,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import LoopVideo from "@/components/work/LoopVideo";
-import { PROJECTS } from "@/lib/projects";
+import { getProjects } from "@/lib/projects";
 import { WORK_MEDIA } from "@/lib/work-media";
 import { NAME } from "@/lib/site";
 
 export function generateStaticParams() {
-  return PROJECTS.map((p) => ({ slug: p.slug }));
+  return getProjects().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const p = PROJECTS.find((x) => x.slug === slug);
+  const p = getProjects().find((x) => x.slug === slug);
   if (!p) return {};
   const media = WORK_MEDIA[p.slug];
   const og = media?.loop?.poster ?? media?.images[0]?.src;
@@ -45,12 +45,13 @@ export default function ProjectPage({ params }: PageProps<"/work/[slug]">) {
 
 async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const index = PROJECTS.findIndex((x) => x.slug === slug);
+  const projects = getProjects();
+  const index = projects.findIndex((x) => x.slug === slug);
   if (index < 0) notFound();
-  const p = PROJECTS[index];
+  const p = projects[index];
   const media = WORK_MEDIA[p.slug];
-  const prev = PROJECTS[(index - 1 + PROJECTS.length) % PROJECTS.length];
-  const next = PROJECTS[(index + 1) % PROJECTS.length];
+  const prev = projects[(index - 1 + projects.length) % projects.length];
+  const next = projects[(index + 1) % projects.length];
   const [heroImg, ...gallery] = media?.loop ? [undefined, ...(media.images ?? [])] : (media?.images ?? []);
   const meta = [p.client, p.year].filter(Boolean).join(" · ");
 

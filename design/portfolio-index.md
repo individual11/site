@@ -1,6 +1,6 @@
 # Portfolio index (draft)
 
-> Superseded on 2026-11-21 by `lib/projects.ts` (final list, order and copy) and `design/old-site-text.md` (original write-ups recovered from the Wayback Machine). Kept for the asset paths and the reasoning behind the cuts.
+> Superseded on 2026-11-21 by `content/work/` (final list, order and copy) and `design/old-site-text.md` (original write-ups recovered from the Wayback Machine). Kept for the asset paths and the reasoning behind the cuts.
 
 Source folder: `../_individual11` (paths below are relative to it). Built 2026-11-20 from the files themselves. The old portfolio site (`Sites/individual11`, CodeIgniter) kept its project text in a MySQL database that isn't in the folder, so descriptions still need David's input. Items marked **?** are open questions.
 

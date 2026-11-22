@@ -4,7 +4,7 @@ import Link from "next/link";
 import ElevenField from "@/components/work/ElevenField";
 import NextSection from "@/components/work/NextSection";
 import CopyEmail from "@/components/CopyEmail";
-import { PROJECTS, type Project } from "@/lib/projects";
+import { getProjects, type Project } from "@/lib/projects";
 import { WORK_MEDIA } from "@/lib/work-media";
 import { EMAIL, NAME } from "@/lib/site";
 import { workDisplay } from "./fonts";
@@ -63,8 +63,9 @@ function FeaturedCard({ p, index }: { p: Project; index: number }) {
 }
 
 export default function WorkPage() {
-  const featured = PROJECTS.filter((p) => p.featured);
-  const more = PROJECTS.filter((p) => !p.featured);
+  const projects = getProjects();
+  const featured = projects.filter((p) => p.featured);
+  const more = projects.filter((p) => !p.featured);
   const stops = [
     { id: "top", label: "Intro" },
     ...featured.map((p) => ({ id: p.slug, label: p.title })),
