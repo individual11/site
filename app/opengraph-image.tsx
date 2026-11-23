@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { NAME, TAGLINE } from "@/lib/site";
+import { NAME, TAGLINE, TAGLINE_LINES } from "@/lib/site";
 
 export const alt = `${NAME} — ${TAGLINE}`;
 export const size = { width: 1200, height: 630 };
@@ -54,6 +54,7 @@ export default async function Image() {
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             alignSelf: "flex-start",
             marginTop: 44,
             marginLeft: 28,
@@ -66,7 +67,9 @@ export default async function Image() {
             transform: "rotate(-1.2deg)",
           }}
         >
-          {TAGLINE}
+          {TAGLINE_LINES.map((line) => (
+            <span key={line}>{line}</span>
+          ))}
         </div>
         <div
           style={{
