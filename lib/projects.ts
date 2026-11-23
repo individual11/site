@@ -25,8 +25,9 @@ export type Project = {
   tech?: string[];
   awards?: string[];
   links?: { label: string; href: string }[];
-  /** Full film (Vimeo). Shown at the top of the project page in place of the loop or hero image. */
-  video?: { id: string; url: string };
+  /** Films (Vimeo). The first plays at the top of the project page in place of the loop or
+   *  hero image; the rest sit below the write-up under their labels. */
+  videos?: { id: string; url: string; label?: string }[];
   /** true: full scroll section with its own particle formation. false: "More work" grid. */
   featured: boolean;
 };
@@ -55,6 +56,16 @@ function pair(file: string, key: string, item: string, names: [string, string]) 
   return [item.slice(0, i).trim(), item.slice(i + 3).trim()] as const;
 }
 
+/** "url" or "label | url". Accepts vimeo.com/123, vimeo.com/manage/videos/123 or player.vimeo.com/video/123 */
+function vimeo(file: string, item: string) {
+  const i = item.indexOf(" | ");
+  const label = i < 0 ? undefined : item.slice(0, i).trim();
+  const url = (i < 0 ? item : item.slice(i + 3)).trim();
+  const v = url.match(/^https?:\/\/(?:www\.|player\.)?vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)\b/);
+  if (!v) throw new ContentError(file, `"video" needs a Vimeo link like https://vimeo.com/123456, got "${url}"`);
+  return { id: v[1], url: `https://vimeo.com/${v[1]}`, ...(label ? { label } : {}) };
+}
+
 function parse(file: string, text: string): Project {
   const src = text.replace(/\r\n?/g, "\n");
   const m = src.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
@@ -78,7 +89,8 @@ function parse(file: string, text: string): Project {
     const kv = line.match(/^([a-z]+):\s*(.*)$/);
     if (!kv) throw new ContentError(file, `${where}: expected "name: value", got "${line.trim()}"`);
     const [, key, value] = kv;
-    if ((LISTS as readonly string[]).includes(key)) {
+    // "video: <url>" is one film; "video:" with "  - label | url" lines under it is several
+    if ((LISTS as readonly string[]).includes(key) || (key === "video" && !value)) {
       if (value) throw new ContentError(file, `${where}: put ${key} items on their own lines, each starting with "  - "`);
       currentList = key;
       lists[key] = [];
@@ -110,12 +122,8 @@ function parse(file: string, text: string): Project {
   };
   if (fields.client) p.client = fields.client;
   if (fields.role) p.role = fields.role;
-  if (fields.video) {
-    // Accepts vimeo.com/123, vimeo.com/manage/videos/123 or player.vimeo.com/video/123
-    const v = fields.video.match(/^https?:\/\/(?:www\.|player\.)?vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)\b/);
-    if (!v) throw new ContentError(file, `"video" needs a Vimeo link like https://vimeo.com/123456, got "${fields.video}"`);
-    p.video = { id: v[1], url: `https://vimeo.com/${v[1]}` };
-  }
+  const films = fields.video ? [fields.video] : (lists.video ?? []);
+  if (films.length) p.videos = films.map((item) => vimeo(file, item));
   if (lists.stats?.length)
     p.stats = lists.stats.map((s) => {
       const [value, label] = pair(file, "stats", s, ["value", "label"]);

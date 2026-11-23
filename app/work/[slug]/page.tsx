@@ -55,7 +55,8 @@ async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) 
   const next = projects[(index + 1) % projects.length];
   // Top slot: the full film if there is one, else the loop, else the first image
   const images = media?.images ?? [];
-  const [heroImg, ...gallery] = p.video || media?.loop ? [undefined, ...images] : images;
+  const [film, ...moreFilms] = p.videos ?? [];
+  const [heroImg, ...gallery] = film || media?.loop ? [undefined, ...images] : images;
   const meta = [p.client, p.year].filter(Boolean).join(" · ");
 
   return (
@@ -71,8 +72,8 @@ async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) 
         {p.role && <p className="w-role">{p.role}</p>}
       </header>
 
-      {p.video ? (
-        <VimeoFilm id={p.video.id} title={p.title} />
+      {film ? (
+        <VimeoFilm id={film.id} title={film.label ? `${p.title}: ${film.label}` : p.title} />
       ) : (
         media?.loop && <LoopVideo loop={media.loop} />
       )}
@@ -135,6 +136,13 @@ async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) 
           )}
         </aside>
       </div>
+
+      {moreFilms.map((f) => (
+        <section key={f.id} className="w-film-more">
+          {f.label && <h2 className="w-eyebrow">{f.label}</h2>}
+          <VimeoFilm id={f.id} title={f.label ? `${p.title}: ${f.label}` : p.title} lazy />
+        </section>
+      ))}
 
       {gallery.length > 0 && (
         <ul className="w-gallery">

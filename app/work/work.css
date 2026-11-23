@@ -515,6 +515,11 @@ html:has(.w-main) {
   margin-inline: auto;
 }
 
+.w-film-more {
+  display: grid;
+  gap: 14px;
+}
+
 .w-film iframe {
   display: block;
   width: 100%;
