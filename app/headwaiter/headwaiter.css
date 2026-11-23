@@ -200,6 +200,49 @@ body:has(> .hw) {
   height: 11.6px;
 }
 
+.hw-extras,
+.hw-hang {
+  gap: 6px;
+}
+
+.hw-extras {
+  display: flex;
+  align-items: center;
+}
+
+.hw-toggle {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 24px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.hw-toggle:hover {
+  background: var(--pressed);
+}
+
+.hw-toggle svg {
+  width: 11px;
+  height: 11px;
+}
+
+.hw button:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 1px;
+}
+
+/* Narrow screens: the toggle sits beside the popover, in its own piece of menu bar. */
+@media (max-width: 979px) {
+  .hw-extras .hw-toggle {
+    display: none;
+  }
+}
+
 /* ---------- Hero ---------- */
 
 .hw-shot {
@@ -300,11 +343,6 @@ body:has(> .hw) {
   text-wrap: balance;
 }
 
-.hw-pop .hw-shot {
-  max-width: 400px;
-  margin-left: auto;
-}
-
 .hw-hang {
   justify-content: flex-end;
   margin: 0 -16px 6px;
@@ -335,6 +373,410 @@ body:has(> .hw) {
 
   .hw-hang {
     display: none;
+  }
+}
+
+/* ---------- Popover: a live copy of the app's, sized in its points ---------- */
+
+/* Holds the tallest the demo gets, so nothing below moves as servers come and go. */
+.hw-live {
+  min-height: 648px;
+}
+
+.hw-popover {
+  --p-panel: #ececec;
+  --p-card: #e3e3e3;
+  --p-edge: #d8d8d8;
+  --p-ink: #222;
+  --p-ink-2: #5c5c5e;
+  --p-ink-3: #8c8c8c;
+  --p-badge: #d6d6d6;
+  --p-chip: #cacaca;
+  --p-blue: #3478f6;
+  --t-next: #1f1f1f;
+  --t-next-ink: #fff;
+
+  max-width: 400px;
+  margin-left: auto;
+  overflow: hidden;
+  background: var(--p-panel);
+  color: var(--p-ink);
+  font-size: 11px;
+  line-height: 14px;
+  cursor: default;
+  user-select: none;
+  /* The app's text renders at this weight. */
+  -webkit-font-smoothing: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hw-popover {
+    --p-panel: #323232;
+    --p-card: #3a3a3a;
+    --p-edge: #444;
+    --p-ink: #e1e1e1;
+    --p-ink-2: #b0b0b0;
+    --p-ink-3: #7c7c7c;
+    --p-badge: #454545;
+    --p-chip: #505050;
+    --p-blue: #3478f6;
+    --t-next: #d5d5d5;
+    --t-next-ink: #000;
+  }
+}
+
+.hw-popover b {
+  font-weight: 500;
+}
+
+.hw-popover p,
+.hw-p-path,
+.hw-p-other span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hw-p-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px 10px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-head p.hw-p-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--p-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-p-app {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(#4e97f8, #3579f7);
+  color: #fff;
+}
+
+.hw-p-app svg {
+  width: 15px;
+  height: 8px;
+}
+
+.hw-p-gear {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0 4px 0 auto;
+}
+
+/* The 8px gap between cards belongs to the card above it, so it closes with the card. */
+.hw-p-card {
+  margin: 0 10px 8px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  background: var(--p-card);
+  box-shadow: inset 0 0 0 1px var(--p-edge);
+}
+
+.hw-p-project {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px 3px;
+  color: var(--p-ink-2);
+  line-height: 13px;
+}
+
+.hw-p-project b,
+.hw-p-history b {
+  flex: none;
+  font-weight: 600;
+}
+
+.hw-p-path {
+  min-width: 0;
+  margin-left: auto;
+  padding-left: 2px;
+  font-size: 10px;
+}
+
+.hw-p-badge,
+.hw-p-chip {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 4px;
+  padding: 0 5px;
+  border-radius: 8px;
+  background: var(--p-badge);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-p-project .hw-p-badge {
+  margin-block: -1px;
+}
+
+.hw-p-badge svg {
+  width: 9px;
+  height: 9px;
+}
+
+.hw-p-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 11px;
+}
+
+.hw-p-tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(color-mix(in srgb, var(--t), #fff 20%), var(--t));
+  color: #fff;
+  font: 700 10px / 1 ui-rounded, "SF Pro Rounded", var(--ui);
+}
+
+.hw-p-tile svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* NEW: started since you last looked. */
+.hw-p-tile i {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--p-panel);
+  border-radius: 50%;
+  background: var(--p-blue);
+}
+
+.hw-p-favicon {
+  background: #fff;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+}
+
+.hw-p-favicon img {
+  border-radius: 50%;
+}
+
+.hw-t-next {
+  --t: var(--t-next);
+  color: var(--t-next-ink);
+}
+
+.hw-t-vite {
+  --t: #785dec;
+}
+
+.hw-t-express {
+  --t: #6d737e;
+}
+
+.hw-t-astro {
+  --t: #fa6b29;
+}
+
+.hw-t-storybook {
+  --t: #ff4785;
+}
+
+.hw-t-chi {
+  --t: #009ec7;
+}
+
+.hw-t-rails {
+  --t: #cc1f1f;
+}
+
+.hw-t-docker {
+  --t: #3262e4;
+}
+
+.hw-p-name {
+  flex: 1;
+  min-width: 0;
+  margin: 0 6px 0 10px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-name p + p,
+.hw-p-port p + p {
+  margin-top: 1px;
+}
+
+.hw-p-name b {
+  margin-right: 2px;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--p-ink);
+}
+
+.hw-p-name p:first-child,
+.hw-p-port p:first-child {
+  line-height: 16px;
+}
+
+.hw-p-port {
+  flex: none;
+  text-align: right;
+  color: var(--p-ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-p-port p:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  /* Room for the arrow the app shows on hover. */
+  padding-right: 13px;
+}
+
+.hw-p-port b,
+.hw-p-other b {
+  font-size: 12px;
+  color: var(--p-ink);
+}
+
+.hw-p-chip {
+  gap: 3px;
+  padding-right: 4px;
+  background: var(--p-chip);
+  color: var(--p-ink-2);
+}
+
+.hw-p-chevron {
+  width: 4px;
+  height: 7px;
+}
+
+.hw-p-chip .hw-p-chevron {
+  transform: rotate(90deg);
+}
+
+.hw-p-slot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 6px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-stopping .hw-p-tile {
+  opacity: 0.5;
+}
+
+.hw-p-stopping b {
+  color: var(--p-ink-2);
+}
+
+.hw-p-spinner {
+  width: 12px;
+  height: 12px;
+  animation: hw-spin 0.8s steps(8) infinite;
+}
+
+@keyframes hw-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.hw-p-other {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 50px 4px 45px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-other svg {
+  flex: none;
+  width: 9px;
+  height: 8px;
+  color: var(--p-ink-3);
+}
+
+.hw-p-other span {
+  flex: 1;
+  min-width: 0;
+}
+
+.hw-p-history {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0;
+  padding: 8px 10px 7px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-history .hw-p-chevron {
+  width: 5px;
+  height: 9px;
+  margin-right: 1px;
+}
+
+.hw-popover .hw-p-foot {
+  padding: 10px 18px 11px;
+  color: var(--p-ink-2);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Rows and cards open and close. Only ones the demo adds get .hw-enter, so the first frame is still. */
+.hw-collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.2, 0, 0, 1),
+    opacity 0.3s;
+}
+
+.hw-collapse > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hw-leave {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+@starting-style {
+  .hw-enter {
+    grid-template-rows: 0fr;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hw-collapse {
+    transition: none;
+  }
+
+  .hw-p-spinner {
+    animation: none;
   }
 }
 

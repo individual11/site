@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import icon from "@/assets/headwaiter/icon.png";
-import popoverLight from "@/assets/headwaiter/popover-light.webp";
-import popoverDark from "@/assets/headwaiter/popover-dark.webp";
 import welcomeLight from "@/assets/headwaiter/welcome-light.webp";
 import welcomeDark from "@/assets/headwaiter/welcome-dark.webp";
 import statesLight from "@/assets/headwaiter/menubar-states-light.webp";
 import statesDark from "@/assets/headwaiter/menubar-states-dark.webp";
-import { Folder, MenuBarItem, Shot, TitleBar, Wallpaper } from "./_parts";
+import { DemoToggle, LivePopover, MenuBarItem } from "./_demo";
+import { Folder, Shot, TitleBar, Wallpaper } from "./_parts";
 
 const APP_NAME = "Headwaiter";
 const TITLE = "Headwaiter: dev servers in your Mac's menu bar";
@@ -76,7 +75,10 @@ export default function Headwaiter() {
 
       <header className="hw-bar">
         <Link href="/">← individual11</Link>
-        <MenuBarItem />
+        <div className="hw-extras">
+          <DemoToggle />
+          <MenuBarItem />
+        </div>
       </header>
 
       <main>
@@ -104,15 +106,11 @@ export default function Headwaiter() {
           </div>
           <div className="hw-pop">
             {/* Narrow screens: the popover follows the text, so it hangs from its own piece of menu bar. */}
-            <div className="hw-hang" aria-hidden="true">
+            <div className="hw-hang">
+              <DemoToggle />
               <MenuBarItem decorative />
             </div>
-            <Shot
-              className="hw-shot"
-              light={popoverLight}
-              dark={popoverDark}
-              alt="Headwaiter's menu bar popover listing seven dev servers grouped by project, with framework, port and uptime."
-            />
+            <LivePopover />
           </div>
         </div>
 
