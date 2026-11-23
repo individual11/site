@@ -10,7 +10,7 @@ import { LivePopover, MenuBarItem } from "./_demo";
 import { Folder, Shot, TitleBar, Wallpaper } from "./_parts";
 
 const APP_NAME = "Headwaiter";
-const TITLE = "Headwaiter: dev servers in your Mac's menu bar";
+const TITLE = "Headwaiter: keep track of the servers running on your Mac";
 const DESCRIPTION =
   "Keep track of the servers running on your Mac. A free, open source menu bar app for developers.";
 
@@ -99,7 +99,9 @@ export default function Headwaiter() {
                 View on GitHub
               </a>
             </div>
-            <p className="hw-small">Free and open source (MIT). macOS&nbsp;15 or later, Apple silicon and Intel.</p>
+            <p className="hw-small">
+              Free and open source (MIT). Beta. macOS&nbsp;15 or later, Apple silicon and Intel.
+            </p>
           </div>
           <div className="hw-pop">
             {/* Narrow screens: the popover follows the text, so it hangs from its own piece of menu bar. */}
@@ -145,15 +147,18 @@ export default function Headwaiter() {
                   <h3>Private</h3>
                 </TitleBar>
                 <div className="hw-privacy">
-                  <p>Nothing leaves your Mac. No account, no analytics.</p>
-                  <p>This website uses Vercel Web Analytics, which is cookieless; the app itself sends nothing.</p>
+                  <p>What Headwaiter sees stays on your Mac. No account, no analytics.</p>
+                  <p>
+                    This website uses Vercel Web Analytics, which is cookieless; the app has no analytics and contacts
+                    GitHub only for updates.
+                  </p>
                 </div>
                 <div className="hw-first">
                   <Shot
                     className="hw-shot"
                     light={welcomeLight}
                     dark={welcomeDark}
-                    alt="Headwaiter's first-run card. It says the app reads files like package.json to show project names, and that nothing leaves your Mac."
+                    alt="Headwaiter's first-run card. It says the app reads files like package.json to show project names, and that what it reads never leaves your Mac."
                     lazy
                   />
                 </div>
@@ -225,10 +230,18 @@ export default function Headwaiter() {
               </div>
             </div>
             <div className="hw-how">
-              <p>Download the disk image, open it and drag Headwaiter to Applications. It&apos;s signed and notarized by Apple.</p>
+              <p>
+                Download the disk image, open it and drag Headwaiter to Applications. It&apos;s signed and notarized by
+                Apple.
+              </p>
+              <p>Allow folder access when macOS asks, so it can show your project names.</p>
               <a className="hw-btn hw-btn-1" href={DOWNLOAD}>
                 Download for Mac
               </a>
+              <p>
+                Headwaiter is in beta. It can update itself: it asks before checking automatically and before installing
+                anything. Update checks contact GitHub.
+              </p>
               <p>
                 Prefer to build it? You need Xcode&nbsp;16 or later. <a href={BUILD}>The README has the steps.</a>
               </p>
