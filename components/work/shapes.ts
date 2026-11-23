@@ -123,6 +123,44 @@ export const FORMATIONS: Record<string, Formation> = {
     },
   },
 
+  tsquare: {
+    // The logo's drawn T: outlines in logic, the shaded sides in creative.
+    layers: {
+      logic: (c, w, h) => {
+        fit(c, w, h, 572, 672);
+        c.strokeStyle = "#fff";
+        c.lineWidth = 16;
+        c.lineJoin = "miter";
+        const faces = [
+          [[14, 182], [444, 14], [556, 73], [118, 241]], // head, top
+          [[118, 241], [556, 73], [556, 183], [118, 360]], // head, front
+          [[14, 182], [118, 241], [118, 360], [14, 301]], // head, end
+          [[185, 333], [272, 298], [272, 654], [185, 603]], // blade, left
+          [[272, 298], [357, 264], [357, 613], [272, 654]], // blade, right
+        ];
+        for (const f of faces) {
+          c.beginPath();
+          f.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+          c.closePath();
+          c.stroke();
+        }
+      },
+      creative: (c, w, h) => {
+        fit(c, w, h, 572, 672);
+        c.fillStyle = "#fff";
+        const shade = [
+          [[331, 175], [534, 97], [534, 173], [225, 297]],
+          [[288, 308], [339, 288], [339, 602], [288, 628]],
+        ];
+        for (const f of shade) {
+          c.beginPath();
+          f.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+          c.fill();
+        }
+      },
+    },
+  },
+
   "microsoft-store": {
     // The wraparound wall: a wide band of screens.
     draw: (c, w, h) => {

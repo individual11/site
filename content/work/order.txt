@@ -2,9 +2,10 @@
 # Move a line to reorder. Put # in front of a line to hide that project.
 # Format help: content/work/README.md
 
+buddy
+tsquare
 donate-life
 find-new-roads
-buddy
 microsoft-store
 light-of-human-kindness
 flipdots

@@ -45,6 +45,32 @@
       ]
     ]
   },
+  "tsquare": {
+    "images": [
+      [
+        "repo:assets/tsquare/playground-flow.jpg",
+        "tsquare playground: the text of a sign-up flow on the left, the three phone screens it draws on the right, joined by arrows"
+      ],
+      [
+        "repo:assets/tsquare/home.jpg",
+        "tsquare.dev home page: Wireframes in plain text, with a live example under the logo"
+      ],
+      [
+        "repo:assets/tsquare/playground-dashboard.jpg",
+        "tsquare playground drawing a desktop analytics dashboard from 32 lines of text"
+      ],
+      [
+        "repo:assets/tsquare/components.jpg",
+        "tsquare component catalog: the board component with its example, its props and the text that draws it"
+      ]
+    ],
+    "loop": [
+      "../experiments/wireframe/video/out/teaser-16x9-v3.mp4",
+      7,
+      6.9,
+      "Clip from the tsquare teaser: text types itself on the left while the wireframe builds on the right"
+    ]
+  },
   "microsoft-store": {
     "images": [
       [

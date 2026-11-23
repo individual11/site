@@ -34,7 +34,7 @@ export const WORK_MEDIA: Record<string, { images: WorkImage[]; loop?: WorkLoop }
       {
         "src": "/work/buddy/01.jpg",
         "width": 1600,
-        "height": 955,
+        "height": 900,
         "alt": "buddy.insure home page: Ship Insurance Fast, with Allstate, Aon, Berkley, Chubb, Great American and Starr logos"
       },
       {
@@ -62,6 +62,41 @@ export const WORK_MEDIA: Record<string, { images: WorkImage[]; loop?: WorkLoop }
         "alt": "Comparison table: 7 days to integrate with Buddy against 6 to 12 months industry standard"
       }
     ]
+  },
+  "tsquare": {
+    "images": [
+      {
+        "src": "/work/tsquare/01.jpg",
+        "width": 1600,
+        "height": 900,
+        "alt": "tsquare playground: the text of a sign-up flow on the left, the three phone screens it draws on the right, joined by arrows"
+      },
+      {
+        "src": "/work/tsquare/02.jpg",
+        "width": 1600,
+        "height": 900,
+        "alt": "tsquare.dev home page: Wireframes in plain text, with a live example under the logo"
+      },
+      {
+        "src": "/work/tsquare/03.jpg",
+        "width": 1600,
+        "height": 900,
+        "alt": "tsquare playground drawing a desktop analytics dashboard from 32 lines of text"
+      },
+      {
+        "src": "/work/tsquare/04.jpg",
+        "width": 1600,
+        "height": 900,
+        "alt": "tsquare component catalog: the board component with its example, its props and the text that draws it"
+      }
+    ],
+    "loop": {
+      "src": "/work/tsquare/loop.mp4",
+      "poster": "/work/tsquare/loop-poster.jpg",
+      "width": 960,
+      "height": 540,
+      "alt": "Clip from the tsquare teaser: text types itself on the left while the wireframe builds on the right"
+    }
   },
   "microsoft-store": {
     "images": [
