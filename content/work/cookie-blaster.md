@@ -3,6 +3,7 @@ title: Cookie Blaster
 year: 2013
 summary: A catapult that watches your face and fires a cookie when you open your mouth.
 featured: true
+video: https://vimeo.com/1249202075
 tech:
   - Tinkercad
   - 3D printing

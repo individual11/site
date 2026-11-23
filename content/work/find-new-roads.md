@@ -5,6 +5,7 @@ year: 2016
 role: ACD / Copywriter
 summary: A gas pump that read your social posts and paid you in gallons.
 featured: true
+video: https://vimeo.com/1249201890
 stats:
   - 7 | countries
   - 1000s | of free gallons

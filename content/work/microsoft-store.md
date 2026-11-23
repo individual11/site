@@ -5,6 +5,7 @@ year: 2009
 role: Creative Director / Technical Lead, The Martin Agency
 summary: Content for a video wall that was, at launch, the highest-resolution screen in the world.
 featured: true
+video: https://vimeo.com/1249202577
 stats:
   - 57,600 x 1,080 | pixel video wall
   - ~1 hr | of launch content
