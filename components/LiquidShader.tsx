@@ -99,6 +99,26 @@ void main() {
 }
 `;
 
+// How the cursor stirs the liquid. Higher stiffness = snappier; both springs
+// start from a standstill, so waking a resting cursor never kicks the image.
+const STIR = {
+  follow: 8, // stiffness of the swirl trailing the cursor
+  swell: 5, // stiffness of the swirl building up
+  gain: 3, // strength per viewport (short side) travelled
+  maxStep: 0.15, // cap per event, so a jump across the page isn't a jolt
+};
+
+type Spring = { pos: number; vel: number };
+
+// Critically damped spring, solved exactly: same motion at any frame rate.
+function ease(s: Spring, target: number, stiffness: number, dt: number) {
+  const x = s.pos - target;
+  const c = s.vel + stiffness * x;
+  const decay = Math.exp(-stiffness * dt);
+  s.pos = target + (x + c * dt) * decay;
+  s.vel = (s.vel - stiffness * c * dt) * decay;
+}
+
 function compile(gl: WebGLRenderingContext, type: number, src: string) {
   const sh = gl.createShader(type);
   if (!sh) return null;
@@ -166,12 +186,17 @@ export default function LiquidShader() {
     let speed = MODES.liquid.speed;
     let warp = MODES.liquid.warp;
     let target = MODES.liquid;
-    const mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5, str: 0 };
+    const mouse = { x: 0.5, y: 0.5, energy: 0 };
+    const swirl = {
+      x: { pos: 0.5, vel: 0 },
+      y: { pos: 0.5, vel: 0 },
+      str: { pos: 0, vel: 0 },
+    };
 
     const draw = () => {
       gl.uniform1f(uTime, time);
-      gl.uniform2f(uMouse, mouse.x, mouse.y);
-      gl.uniform1f(uMouseStr, mouse.str);
+      gl.uniform2f(uMouse, swirl.x.pos, swirl.y.pos);
+      gl.uniform1f(uMouseStr, swirl.str.pos);
       gl.uniform1f(uWarp, warp);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     };
@@ -184,9 +209,10 @@ export default function LiquidShader() {
       speed += (target.speed - speed) * Math.min(dt * 2, 1);
       warp += (target.warp - warp) * Math.min(dt * 2, 1);
       time += dt * speed;
-      mouse.x += (mouse.tx - mouse.x) * Math.min(dt * 4, 1);
-      mouse.y += (mouse.ty - mouse.y) * Math.min(dt * 4, 1);
-      mouse.str *= Math.pow(0.25, dt); // swirl relaxes when the cursor rests
+      mouse.energy *= Math.pow(0.25, dt); // swirl relaxes when the cursor rests
+      ease(swirl.x, mouse.x, STIR.follow, dt);
+      ease(swirl.y, mouse.y, STIR.follow, dt);
+      ease(swirl.str, mouse.energy, STIR.swell, dt);
       draw();
       raf = requestAnimationFrame(frame);
     };
@@ -202,9 +228,15 @@ export default function LiquidShader() {
     };
 
     const onPointer = (e: PointerEvent) => {
-      mouse.tx = e.clientX / window.innerWidth;
-      mouse.ty = 1 - e.clientY / window.innerHeight;
-      mouse.str = Math.min(mouse.str + 0.08, 1);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const x = e.clientX / w;
+      const y = 1 - e.clientY / h;
+      // energy follows distance, not event count: a nudge barely stirs
+      const moved = Math.hypot((x - mouse.x) * w, (y - mouse.y) * h) / Math.min(w, h);
+      mouse.energy = Math.min(mouse.energy + Math.min(moved * STIR.gain, STIR.maxStep), 1);
+      mouse.x = x;
+      mouse.y = y;
     };
     const onResize = () => {
       resize();
