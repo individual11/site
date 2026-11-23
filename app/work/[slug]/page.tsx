@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import LoopVideo from "@/components/work/LoopVideo";
+import VimeoFilm from "@/components/work/VimeoFilm";
 import { getProjects } from "@/lib/projects";
 import { WORK_MEDIA } from "@/lib/work-media";
 import { NAME } from "@/lib/site";
@@ -52,7 +53,9 @@ async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) 
   const media = WORK_MEDIA[p.slug];
   const prev = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
-  const [heroImg, ...gallery] = media?.loop ? [undefined, ...(media.images ?? [])] : (media?.images ?? []);
+  // Top slot: the full film if there is one, else the loop, else the first image
+  const images = media?.images ?? [];
+  const [heroImg, ...gallery] = p.video || media?.loop ? [undefined, ...images] : images;
   const meta = [p.client, p.year].filter(Boolean).join(" · ");
 
   return (
@@ -68,7 +71,11 @@ async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) 
         {p.role && <p className="w-role">{p.role}</p>}
       </header>
 
-      {media?.loop && <LoopVideo loop={media.loop} />}
+      {p.video ? (
+        <VimeoFilm id={p.video.id} title={p.title} />
+      ) : (
+        media?.loop && <LoopVideo loop={media.loop} />
+      )}
       {heroImg && (
         <figure className="w-hero-img">
           <Image src={heroImg.src} alt={heroImg.alt} width={heroImg.width} height={heroImg.height} sizes="(max-width: 1100px) 100vw, 1100px" priority />

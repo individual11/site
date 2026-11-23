@@ -5,6 +5,7 @@ year: 2013
 role: With Patience Salgado, Hamilton Glass and the Martin Lab
 summary: A thousand lights on a mural. Some only came on if strangers held hands.
 featured: true
+video: https://vimeo.com/82352115
 stats:
   - 1,000 | LED pods
 tech:

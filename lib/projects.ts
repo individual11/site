@@ -25,12 +25,14 @@ export type Project = {
   tech?: string[];
   awards?: string[];
   links?: { label: string; href: string }[];
+  /** Full film (Vimeo). Shown at the top of the project page in place of the loop or hero image. */
+  video?: { id: string; url: string };
   /** true: full scroll section with its own particle formation. false: "More work" grid. */
   featured: boolean;
 };
 
 const DIR = path.join(process.cwd(), "content", "work");
-const SCALARS = ["title", "client", "year", "role", "summary", "featured"] as const;
+const SCALARS = ["title", "client", "year", "role", "summary", "featured", "video"] as const;
 const LISTS = ["stats", "awards", "tech", "links"] as const;
 const REQUIRED = ["title", "year", "summary", "featured"] as const;
 
@@ -108,6 +110,12 @@ function parse(file: string, text: string): Project {
   };
   if (fields.client) p.client = fields.client;
   if (fields.role) p.role = fields.role;
+  if (fields.video) {
+    // Accepts vimeo.com/123, vimeo.com/manage/videos/123 or player.vimeo.com/video/123
+    const v = fields.video.match(/^https?:\/\/(?:www\.|player\.)?vimeo\.com\/(?:manage\/videos\/|video\/)?(\d+)\b/);
+    if (!v) throw new ContentError(file, `"video" needs a Vimeo link like https://vimeo.com/123456, got "${fields.video}"`);
+    p.video = { id: v[1], url: `https://vimeo.com/${v[1]}` };
+  }
   if (lists.stats?.length)
     p.stats = lists.stats.map((s) => {
       const [value, label] = pair(file, "stats", s, ["value", "label"]);

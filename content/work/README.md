@@ -41,6 +41,7 @@ Between the `---` lines:
 | `year` | yes | Any text: `2016`, `2012-2014` |
 | `role` | no | Your role, shown under the summary |
 | `summary` | yes | The one-liner on cards and at the top of the project page |
+| `video` | no | A Vimeo link (`https://vimeo.com/123456`). The film plays at the top of the project page, and any photos move to the gallery below |
 | `featured` | yes | `true`: full scroll section with its own particle shape. `false`: the "More work" grid |
 | `stats` | no | Big numbers. Each item is `value | label`. Cards show the first three |
 | `awards` | no | One line per award. Cards show the show names (the text before the year) |

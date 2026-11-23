@@ -4,6 +4,7 @@ year: 2010
 role: With Patrick Simkins
 summary: A flock that came for glow sticks and fled when the room got loud.
 featured: false
+video: https://vimeo.com/15173051
 tech:
   - Processing
   - Computer vision

@@ -4,6 +4,7 @@ client: The Martin Agency
 year: 2014
 summary: 600+ custom ornaments, painted one at a time by a robot.
 featured: false
+video: https://vimeo.com/119176720
 tech:
   - Robotic egg painter
 ---

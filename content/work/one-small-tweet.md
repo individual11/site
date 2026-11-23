@@ -4,6 +4,7 @@ client: John F. Kennedy Presidential Library
 year: 2012
 summary: Tweets that flew Neil Armstrong back to the moon one last time.
 featured: true
+video: https://vimeo.com/79638832
 stats:
   - 2,481 | tweets to the moon
 tech:
