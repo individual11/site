@@ -6,7 +6,7 @@ import welcomeLight from "@/assets/headwaiter/welcome-light.webp";
 import welcomeDark from "@/assets/headwaiter/welcome-dark.webp";
 import statesLight from "@/assets/headwaiter/menubar-states-light.webp";
 import statesDark from "@/assets/headwaiter/menubar-states-dark.webp";
-import { DemoToggle, LivePopover, MenuBarItem } from "./_demo";
+import { LivePopover, MenuBarItem } from "./_demo";
 import { Folder, Shot, TitleBar, Wallpaper } from "./_parts";
 
 const APP_NAME = "Headwaiter";
@@ -75,10 +75,7 @@ export default function Headwaiter() {
 
       <header className="hw-bar">
         <Link href="/">← individual11</Link>
-        <div className="hw-extras">
-          <DemoToggle />
-          <MenuBarItem />
-        </div>
+        <MenuBarItem />
       </header>
 
       <main>
@@ -106,8 +103,7 @@ export default function Headwaiter() {
           </div>
           <div className="hw-pop">
             {/* Narrow screens: the popover follows the text, so it hangs from its own piece of menu bar. */}
-            <div className="hw-hang">
-              <DemoToggle />
+            <div className="hw-hang" aria-hidden="true">
               <MenuBarItem decorative />
             </div>
             <LivePopover />

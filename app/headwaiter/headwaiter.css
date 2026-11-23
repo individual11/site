@@ -200,49 +200,6 @@ body:has(> .hw) {
   height: 11.6px;
 }
 
-.hw-extras,
-.hw-hang {
-  gap: 6px;
-}
-
-.hw-extras {
-  display: flex;
-  align-items: center;
-}
-
-.hw-toggle {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 24px;
-  border: 0;
-  border-radius: 6px;
-  background: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.hw-toggle:hover {
-  background: var(--pressed);
-}
-
-.hw-toggle svg {
-  width: 11px;
-  height: 11px;
-}
-
-.hw button:focus-visible {
-  outline: 2px solid var(--link);
-  outline-offset: 1px;
-}
-
-/* Narrow screens: the toggle sits beside the popover, in its own piece of menu bar. */
-@media (max-width: 979px) {
-  .hw-extras .hw-toggle {
-    display: none;
-  }
-}
-
 /* ---------- Hero ---------- */
 
 .hw-shot {

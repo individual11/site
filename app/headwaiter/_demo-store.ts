@@ -71,12 +71,11 @@ export type Running = {
 };
 
 export type DemoState = {
-  /** Demo time in seconds. Stands still while paused, hidden or off screen. */
+  /** Demo time in seconds. Stands still while hidden or off screen. */
   now: number;
   running: ReadonlyMap<string, Running>;
   /** Recently stopped server ids, newest first. */
   history: readonly string[];
-  paused: boolean;
 };
 
 const INITIAL: DemoState = {
@@ -85,7 +84,6 @@ const INITIAL: DemoState = {
     SERVERS.filter((s) => s.age !== undefined).map((s) => [s.id, { start: -s.age!, isNew: !!s.isNew }]),
   ),
   history: ["admin", "storybook", "blog"],
-  paused: false,
 };
 
 /** Servers that count: everything running except rows on their way out. */
@@ -126,8 +124,6 @@ function set(next: Partial<DemoState>) {
   state = { ...state, ...next };
   listeners.forEach((l) => l());
 }
-
-export const setPaused = (paused: boolean) => set({ paused });
 
 function patch(id: string, change: Partial<Running>) {
   const running = new Map(state.running);
@@ -224,13 +220,14 @@ function tick() {
   if (startFirst ? start() || beginStop() : beginStop() || start()) nextEventAt = state.now + between(3, 5);
 }
 
-/** Runs the demo while `element` is on screen, the tab is visible and nobody paused it. */
+/** Runs the demo while `element` is on screen and the tab is visible. Under reduced motion it stays a still frame. */
 export function runDemo(element: Element) {
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let onScreen = false;
   let timer: ReturnType<typeof setInterval> | undefined;
 
   const update = () => {
-    const shouldRun = onScreen && !document.hidden && !state.paused;
+    const shouldRun = onScreen && !document.hidden && !reducedMotion.matches;
     if (shouldRun && !timer) timer = setInterval(tick, 1000);
     if (!shouldRun && timer) {
       clearInterval(timer);
@@ -244,12 +241,12 @@ export function runDemo(element: Element) {
   });
   observer.observe(element);
   document.addEventListener("visibilitychange", update);
-  const unsubscribe = subscribe(update);
+  reducedMotion.addEventListener("change", update);
 
   return () => {
     observer.disconnect();
     document.removeEventListener("visibilitychange", update);
-    unsubscribe();
+    reducedMotion.removeEventListener("change", update);
     clearInterval(timer);
   };
 }

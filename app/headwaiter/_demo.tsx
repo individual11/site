@@ -10,7 +10,6 @@ import {
   PROJECTS,
   runDemo,
   SERVERS,
-  setPaused,
   subscribe,
   uptime,
   type DemoServer,
@@ -35,29 +34,13 @@ export function MenuBarItem({ decorative = false }: { decorative?: boolean }) {
   );
 }
 
-/** Pauses the demo: it moves on its own for as long as the page is open (WCAG 2.2.2). */
-export function DemoToggle() {
-  const { paused } = useDemo();
-  const label = paused ? "Play the demo" : "Pause the demo";
-  return (
-    <button type="button" className="hw-toggle" aria-label={label} title={label} onClick={() => setPaused(!paused)}>
-      <svg viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
-        {paused ? <path d="M3 1.6v8.8L10.4 6Z" /> : <path d="M2.5 1.5h2.4v9H2.5zM7.1 1.5h2.4v9H7.1z" />}
-      </svg>
-    </button>
-  );
-}
-
 /** A live copy of the app's popover. Same layout as PopoverView.swift, in points. */
 export function LivePopover() {
   const state = useDemo();
   const ref = useRef<HTMLDivElement>(null);
   const count = countRunning(state);
 
-  useEffect(() => {
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) setPaused(true);
-    return runDemo(ref.current!);
-  }, []);
+  useEffect(() => runDemo(ref.current!), []);
 
   return (
     <div className="hw-live">
@@ -65,7 +48,7 @@ export function LivePopover() {
         ref={ref}
         className="hw-shot hw-popover"
         role="img"
-        aria-label="Headwaiter's menu bar popover listing sample dev servers grouped by project, with framework, port and uptime. Servers start and stop as you watch."
+        aria-label="Headwaiter's menu bar popover listing sample dev servers grouped by project, with framework, port and uptime."
       >
         <div className="hw-p-head">
           <span className="hw-p-app">
