@@ -21,6 +21,30 @@
       "Clip from the Find New Roads case video"
     ]
   },
+  "buddy": {
+    "images": [
+      [
+        "repo:assets/buddy/home.jpg",
+        "buddy.insure home page: Ship Insurance Fast, with Allstate, Aon, Berkley, Chubb, Great American and Starr logos"
+      ],
+      [
+        "repo:assets/buddy/mcp-engine.jpg",
+        "Buddy MCP page: the AI converses, the engine decides"
+      ],
+      [
+        "repo:assets/buddy/mcp-grounded.jpg",
+        "Buddy MCP answering a coverage question from the actual policy, with the section cited"
+      ],
+      [
+        "repo:assets/buddy/mcp-embed.jpg",
+        "Buddy's embeddable insurance chat, branded for the partner"
+      ],
+      [
+        "repo:assets/buddy/metrics.jpg",
+        "Comparison table: 7 days to integrate with Buddy against 6 to 12 months industry standard"
+      ]
+    ]
+  },
   "microsoft-store": {
     "images": [
       [

@@ -21,7 +21,7 @@ links:
 
 I co-founded Buddy and ran technology. That meant building the team, the platform, and ION (Insurance Object Notation), a data format that turns an insurance product's rules, pricing and workflows into something you can deploy anywhere.
 
-It sells and services insurance in all 50 states, across the whole life of a policy, for carriers including Allstate, WR Berkley, Great American and Chubb. Eight figures in annual premium, tens of thousands of policies a year, at 99.9999% uptime with no humans in the loop.
+It sells and services insurance in all 50 states, across the whole life of a policy, for customers including Allstate, Aon, WR Berkley, Great American, Chubb and Starr. Eight figures in annual premium, tens of thousands of policies a year, at 99.9999% uptime with no humans in the loop.
 
 New channels stop being engineering projects. A product the industry takes six-plus months to launch goes live in days (the fastest was 18 hours), and one ION definition reaches direct, embedded, agent, Stripe and AI-agent channels.
 
