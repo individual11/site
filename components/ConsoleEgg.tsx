@@ -52,6 +52,7 @@ export default function ConsoleEgg() {
     window.whoami = () => {
       console.log(`%c ${NAME.toUpperCase()} %c ${TAGLINE}`, ACID, PLAIN);
       console.log(`%clinkedin%c ${LINKS.linkedin}`, INK, PLAIN);
+      console.log(`%cgithub%c ${LINKS.github}`, INK, PLAIN);
       console.log(`%cblog%c ${LINKS.blog}`, INK, PLAIN);
       console.log(`%cemail%c ${EMAIL}`, INK, PLAIN);
     };
