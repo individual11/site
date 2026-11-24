@@ -532,6 +532,57 @@ body:has(> .cc) {
   opacity: 0.9;
 }
 
+/* Closing download card: the header's dark half again, small. */
+.cc-get {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 20px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--dark);
+  color: var(--light);
+}
+
+.cc-get-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 15px;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.12);
+}
+
+.cc-get-text {
+  flex: 1 1 0;
+}
+
+.cc-get h2 {
+  margin-bottom: 2px;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.cc-get p {
+  font-size: 15px;
+  color: var(--muted-on-dark);
+}
+
+.cc-get .cc-store {
+  margin-top: 0;
+}
+
+@media (max-width: 719.98px) {
+  .cc-get .cc-store {
+    flex: 1 0 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 720px) {
+  .cc-get {
+    padding: 28px 32px;
+  }
+}
+
 /* Privacy policy text. */
 .cc-prose section {
   padding-top: 48px;

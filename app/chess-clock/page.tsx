@@ -189,6 +189,17 @@ export default function ChessClockSupport() {
             </a>
           </div>
         </section>
+
+        <section aria-labelledby="get">
+          <div className="cc-get">
+            <Image className="cc-get-icon" src={icon} alt="" sizes="64px" />
+            <div className="cc-get-text">
+              <h2 id="get">{APP_NAME}</h2>
+              <p>Free on iPhone and iPad.</p>
+            </div>
+            <StoreButton />
+          </div>
+        </section>
       </main>
 
       <Footer />
