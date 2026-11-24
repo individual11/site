@@ -1,6 +1,6 @@
 ---
 title: Cookie Blaster
-client: The Martin Agency
+client: Chips Ahoy!
 year: 2013
 role: Creator, The Martin Agency
 summary: A catapult that watches your face and fires a cookie when you open your mouth.
