@@ -22,10 +22,10 @@ const showName = (award: string) => award.split(/ \d{4}:/)[0];
 function cover(p: Project) {
   const m = WORK_MEDIA[p.slug];
   if (!m) return null;
-  // Photos make better covers than video frames; fall back to the clip's poster.
+  // Photos make better covers than video frames; fall back to the poster.
   if (m.images[0]) return m.images[0];
   if (m.loop) return { src: m.loop.poster, width: m.loop.width, height: m.loop.height, alt: m.loop.alt };
-  return null;
+  return m.poster ?? null;
 }
 
 function FeaturedCard({ p, index }: { p: Project; index: number }) {

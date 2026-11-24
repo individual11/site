@@ -13,7 +13,7 @@ Each project on `/work` is one file here. Edit the text, save, and the site pick
 title: The World's Biggest Asshole
 client: Donate Life
 year: 2016
-role: Copywriter / ACD, The Martin Agency
+role: ACD / Copywriter, The Martin Agency
 summary: Even the worst guy you've ever met can still save a life.
 featured: true
 stats:
@@ -40,9 +40,9 @@ Between the `---` lines:
 | Field | Required | What it does |
 |---|---|---|
 | `title` | yes | Project name |
-| `client` | no | Shown before the year, e.g. `DONATE LIFE · 2016` |
+| `client` | no | Shown before the year, e.g. `DONATE LIFE · 2016`. Own projects use `Open source` or `Personal` |
 | `year` | yes | Any text: `2016`, `2012-2014` |
-| `role` | no | Your role, shown under the summary |
+| `role` | no | Your role, shown under the summary. Usual shape: `Title / Title, Company`. The write-up only mentions it again when it adds something |
 | `summary` | yes | The one-liner on cards and at the top of the project page |
 | `video` | no | A Vimeo link (`https://vimeo.com/123456`). The film plays at the top of the project page, and any photos move to the gallery below. For several films, list them like stats, each `label | URL`: the first plays at the top, the rest go below the write-up under their labels |
 | `featured` | yes | `true`: full scroll section with its own particle shape. `false`: the "More work" grid |

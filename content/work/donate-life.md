@@ -2,7 +2,7 @@
 title: The World's Biggest Asshole
 client: Donate Life
 year: 2016
-role: Copywriter / ACD, The Martin Agency
+role: ACD / Copywriter, The Martin Agency
 summary: Even the worst guy you've ever met can still save a life.
 featured: true
 video:
@@ -26,4 +26,4 @@ A campaign to get younger people onto the organ donor registry. Heartstrings don
 
 It was seen more than 80 million times in 76 countries, and daily donor registrations went up roughly 700% in the two weeks after launch.
 
-I was one of the writers, and ACD on it at The Martin Agency.
+I was one of the writers.

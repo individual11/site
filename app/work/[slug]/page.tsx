@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
   const p = getProjects().find((x) => x.slug === slug);
   if (!p) return {};
   const media = WORK_MEDIA[p.slug];
-  const og = media?.loop?.poster ?? media?.images[0]?.src;
+  const og = media?.poster?.src ?? media?.loop?.poster ?? media?.images[0]?.src;
   return {
     title: `${p.title} · ${NAME}`,
     description: p.summary,

@@ -1,6 +1,8 @@
 ---
 title: Lorenz Attractor
+client: Personal
 year: 2010
+role: Creator
 summary: I can't draw freehand, so I made the code do it.
 featured: false
 tech:

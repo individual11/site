@@ -2,8 +2,8 @@
 title: Light of Human Kindness
 client: RVA Street Art Festival
 year: 2013
-role: With Patience Salgado, Hamilton Glass and the Martin Lab
-summary: A thousand lights on a mural. Some only came on if strangers held hands.
+role: Martin Lab, with Patience Salgado and Hamilton Glass
+summary: A thousand lights on a mural. The best patterns took strangers holding hands.
 featured: true
 video: https://vimeo.com/82352115
 stats:

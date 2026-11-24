@@ -18,5 +18,3 @@ We swapped the card readers on gas pumps for tablets where you could put in your
 The receipt came with adventure ideas nearby. The most positive people got something bigger, like fan boating in New Orleans or a private meal in Argentina.
 
 We ran the stunt in New Orleans, Argentina, Dubai, Delhi, South Korea, Cape Town and Canada, handed out thousands of gallons, and the videos were seen by millions.
-
-I was ACD and copywriter on it.

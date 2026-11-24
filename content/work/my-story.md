@@ -2,7 +2,7 @@
 title: This Is My Story
 client: EF Education First
 year: 2010
-role: Technical Lead
+role: Technical Lead, EF Education First
 summary: Upload a photo and watch the next 20 years of your life.
 featured: false
 stats:

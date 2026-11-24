@@ -2,6 +2,7 @@
 title: Coffitivity for Mac
 client: Coffitivity
 year: 2013
+role: Developer
 summary: Coffee shop noise, in your menu bar.
 featured: false
 stats:

@@ -6,19 +6,19 @@
         "Mural of a man in a pink robe holding a bat, next to the line: Even this guy can save a life. registerme.org"
       ]
     ],
-    "loop": [
+    "poster": [
       "World's Biggest Asshole_Donate Life.mov",
       135,
       8,
-      "Clip from The World's Biggest Asshole: Coleman Sweeney in his robe, being himself"
+      "Still from The World's Biggest Asshole: Coleman Sweeney in his robe, being himself"
     ]
   },
   "find-new-roads": {
-    "loop": [
+    "poster": [
       "Chevy Pump Case Short edit 04_1.mp4",
       30,
       8,
-      "Clip from the Find New Roads case video"
+      "Still from the Find New Roads case video"
     ]
   },
   "buddy": {
@@ -90,11 +90,11 @@
         "Shoppers under the video wall"
       ]
     ],
-    "loop": [
+    "poster": [
       "work/MS/31514197.mov",
       20,
       8,
-      "The wraparound video wall in motion"
+      "The wraparound video wall"
     ]
   },
   "light-of-human-kindness": {
@@ -116,11 +116,11 @@
         "Writing the light controller code next to strings of LED pods"
       ]
     ],
-    "loop": [
+    "poster": [
       "work/lohk/LOHK_YouTube_V4_720p.mp4",
       110,
       8,
-      "Clip from the Light of Human Kindness video"
+      "Still from the Light of Human Kindness video"
     ]
   },
   "flipdots": {
@@ -188,7 +188,7 @@
         "Early servo test on a breadboard"
       ]
     ],
-    "loop": [
+    "poster": [
       "work/cookie blaster/cookie_blaster.mov",
       45,
       8,
@@ -314,7 +314,7 @@
         "The robot painting an ornament, seen on a camera screen"
       ]
     ],
-    "loop": [
+    "poster": [
       "work/XmasOrnaments/IMG_6082.MOV",
       3,
       8,
