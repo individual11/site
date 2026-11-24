@@ -2,7 +2,7 @@ import Link from "next/link";
 import LiquidShader from "@/components/LiquidShader";
 import ConsoleEgg from "@/components/ConsoleEgg";
 import CopyEmail from "@/components/CopyEmail";
-import { EMAIL, LINKS, NAME, TAGLINE } from "@/lib/site";
+import { EMAIL, LINKS, NAME, TAGLINE_LINES } from "@/lib/site";
 
 export default function Home() {
   const [first, last] = NAME.split(" ");
@@ -16,13 +16,20 @@ export default function Home() {
           <span>{first}</span>
           <span>{last}</span>
         </h1>
-        <p className="tagline">{TAGLINE}</p>
+        <p className="tagline">
+          {TAGLINE_LINES.map((line) => (
+            <span key={line}>{line} </span>
+          ))}
+        </p>
         <nav className="links" aria-label="Elsewhere">
           <Link className="btn" href="/work">
             Work <span aria-hidden="true">→</span>
           </Link>
           <a className="btn" href={LINKS.linkedin} target="_blank" rel="me noopener">
             LinkedIn <span aria-hidden="true">↗</span>
+          </a>
+          <a className="btn" href={LINKS.github} target="_blank" rel="me noopener">
+            GitHub <span aria-hidden="true">↗</span>
           </a>
           <a className="btn" href={LINKS.blog} target="_blank" rel="me noopener">
             Blog <span aria-hidden="true">↗</span>

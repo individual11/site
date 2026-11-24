@@ -1,0 +1,1186 @@
+/*
+ * Headwaiter page (/headwaiter). The page is a Mac desktop: an edge-to-edge menu bar, the app's popover
+ * in the top right corner, a wallpaper cut from the bow tie's wings, and one window per section (a settings
+ * list, a Finder list, the disk image). The footer is the Dock. System font, light and dark with the system.
+ * Everything is scoped under .hw so the rest of the site is untouched.
+ */
+
+/* Overscroll shows the wallpaper's base color. */
+html:has(.hw) {
+  color-scheme: light dark;
+}
+
+body:has(> .hw) {
+  background: #e6edfa;
+}
+
+.hw {
+  color-scheme: light;
+  --wall: #e6edfa;
+  --w1: #d7e3fa;
+  --w2: #c3d6fb;
+  --w3: #a9c6fd;
+  --fold: rgba(15, 77, 209, 0.1);
+  --bar: rgba(244, 248, 255, 0.94);
+  --bar-ink: #14171f;
+  --pressed: rgba(15, 30, 70, 0.13);
+  --on-wall: #0b1738;
+  --on-wall-2: #2c3b63;
+  --win: #ffffff;
+  --title: #f3f3f4;
+  --well: #f5f5f6;
+  --stripe: #f5f5f6;
+  --line: #dedee1;
+  --edge: rgba(10, 25, 60, 0.2);
+  --ink: #1d1d1f;
+  --ink-2: #55565c;
+  --light: #d2d2d5;
+  --link: #0f4dd1;
+  --accent: #0f4dd1;
+  --accent-hover: #0b3fb0;
+  --btn: rgba(255, 255, 255, 0.85);
+  --btn-edge: rgba(11, 23, 56, 0.22);
+  --folder: #6fb1f5;
+  --folder-back: #4f97e6;
+  --strip: #e6e6e6;
+  --lift: 0 2px 6px rgba(13, 35, 90, 0.1), 0 28px 60px -20px rgba(13, 35, 90, 0.38);
+  --ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Own stacking context, so the fixed wallpaper sits behind the page but above the body. */
+  isolation: isolate;
+  min-height: 100svh;
+  color: var(--ink);
+  font: 15px/1.5 var(--ui);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  body:has(> .hw) {
+    background: #0a1228;
+  }
+
+  .hw {
+    color-scheme: dark;
+    --wall: #0a1228;
+    --w1: #0d1938;
+    --w2: #11224d;
+    --w3: #162c66;
+    --fold: rgba(148, 182, 255, 0.1);
+    --bar: rgba(20, 28, 52, 0.92);
+    --bar-ink: #eef2fb;
+    --pressed: rgba(255, 255, 255, 0.2);
+    --on-wall: #f1f5ff;
+    --on-wall-2: #b9c8ea;
+    --win: #242528;
+    --title: #303135;
+    --well: #2d2e32;
+    --stripe: #2a2b2f;
+    --line: #414247;
+    --edge: rgba(255, 255, 255, 0.16);
+    --ink: #e9e9ec;
+    --ink-2: #b4b5bb;
+    --light: #56575c;
+    --link: #8db9ff;
+    --accent-hover: #1c5be2;
+    --btn: rgba(255, 255, 255, 0.14);
+    --btn-edge: rgba(255, 255, 255, 0.3);
+    --folder: #3d7be0;
+    --folder-back: #2a5fbe;
+    --strip: #292929;
+    --lift: 0 2px 6px rgba(0, 0, 0, 0.35), 0 26px 60px -18px rgba(0, 0, 0, 0.75);
+  }
+}
+
+.hw img,
+.hw svg {
+  display: block;
+}
+
+.hw a {
+  color: var(--link);
+  text-underline-offset: 3px;
+}
+
+.hw a:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.hw-nw {
+  white-space: nowrap;
+}
+
+/* For screen readers only. */
+.hw-say {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+/* ---------- Wallpaper ---------- */
+
+.hw-paper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: var(--wall);
+}
+
+.hw-tie {
+  transform: translate(1224px, 340px);
+}
+
+@media (max-width: 979px) {
+  .hw-tie {
+    transform: translate(1720px, 380px);
+  }
+}
+
+.hw-w1 {
+  fill: var(--w1);
+}
+
+.hw-w2 {
+  fill: var(--w2);
+}
+
+.hw-w3 {
+  fill: var(--w3);
+}
+
+.hw-fold {
+  fill: none;
+  stroke: var(--fold);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+/* ---------- Menu bar: edge to edge, like the real one ---------- */
+
+.hw-bar,
+.hw-hang {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  background: var(--bar);
+  color: var(--bar-ink);
+  font-size: 13px;
+}
+
+.hw-bar {
+  justify-content: space-between;
+  padding: 0 12px;
+  box-shadow: 0 1px 0 var(--edge);
+}
+
+.hw .hw-bar a {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.hw-bar a:hover {
+  text-decoration: underline;
+}
+
+.hw-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  padding: 0 9px;
+  border-radius: 6px;
+  background: var(--pressed);
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-item svg {
+  width: 22px;
+  height: 11.6px;
+}
+
+/* ---------- Hero ---------- */
+
+.hw-shot {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px var(--edge),
+    var(--lift);
+}
+
+.hw-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 44px;
+  padding: 28px 16px 0;
+}
+
+.hw-who {
+  color: var(--on-wall);
+  text-align: center;
+}
+
+.hw-icon {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.hw h1 {
+  margin: 6px 0 0 -0.02em;
+  font: 700 clamp(46px, 13vw, 88px) / 1 var(--display);
+  letter-spacing: -0.026em;
+}
+
+.hw-tag {
+  margin-top: 16px;
+  font: 500 clamp(22px, 6vw, 30px) / 1.2 var(--display);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.hw-sub {
+  max-width: 42ch;
+  margin: 14px auto 0;
+  font-size: 17px;
+  color: var(--on-wall-2);
+  text-wrap: balance;
+}
+
+.hw-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.hw-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: 11px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.hw a.hw-btn:focus-visible {
+  border-radius: 11px;
+}
+
+.hw a.hw-btn-1 {
+  background: var(--accent);
+  color: #fff;
+}
+
+.hw a.hw-btn-1:hover {
+  background: var(--accent-hover);
+}
+
+.hw a.hw-btn-2 {
+  background: var(--btn);
+  color: var(--on-wall);
+  box-shadow: inset 0 0 0 1px var(--btn-edge);
+}
+
+.hw a.hw-btn-2:hover {
+  box-shadow: inset 0 0 0 1px var(--on-wall);
+}
+
+.hw-small {
+  margin: 16px auto 0;
+  font-size: 13px;
+  color: var(--on-wall-2);
+  text-wrap: balance;
+}
+
+.hw-hang {
+  justify-content: flex-end;
+  margin: 0 -16px 6px;
+  padding: 0 12px;
+  box-shadow:
+    0 1px 0 var(--edge),
+    0 -1px 0 var(--edge);
+}
+
+@media (min-width: 980px) {
+  .hw-hero {
+    grid-template-columns: minmax(0, 1fr) 400px;
+    gap: 40px;
+    align-items: start;
+    min-height: 720px;
+    padding: 6px 12px 0 24px;
+  }
+
+  .hw-who {
+    align-self: center;
+    padding: 24px 0 40px;
+  }
+
+  .hw-icon {
+    width: 168px;
+    height: 168px;
+  }
+
+  .hw-hang {
+    display: none;
+  }
+}
+
+/* ---------- Popover: a live copy of the app's, sized in its points ---------- */
+
+/* Holds the tallest the demo gets, so nothing below moves as servers come and go. */
+.hw-live {
+  min-height: 648px;
+}
+
+.hw-popover {
+  --p-panel: #ececec;
+  --p-card: #e3e3e3;
+  --p-edge: #d8d8d8;
+  --p-ink: #222;
+  --p-ink-2: #5c5c5e;
+  --p-ink-3: #8c8c8c;
+  --p-badge: #d6d6d6;
+  --p-chip: #cacaca;
+  --p-blue: #3478f6;
+  --t-next: #1f1f1f;
+  --t-next-ink: #fff;
+
+  max-width: 400px;
+  margin-left: auto;
+  overflow: hidden;
+  background: var(--p-panel);
+  color: var(--p-ink);
+  font-size: 11px;
+  line-height: 14px;
+  cursor: default;
+  user-select: none;
+  /* The app's text renders at this weight. */
+  -webkit-font-smoothing: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hw-popover {
+    --p-panel: #323232;
+    --p-card: #3a3a3a;
+    --p-edge: #444;
+    --p-ink: #e1e1e1;
+    --p-ink-2: #b0b0b0;
+    --p-ink-3: #7c7c7c;
+    --p-badge: #454545;
+    --p-chip: #505050;
+    --p-blue: #3478f6;
+    --t-next: #d5d5d5;
+    --t-next-ink: #000;
+  }
+}
+
+.hw-popover b {
+  font-weight: 500;
+}
+
+.hw-popover p,
+.hw-p-path,
+.hw-p-other span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hw-p-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px 10px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-head p.hw-p-title {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 16px;
+  color: var(--p-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-p-app {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: linear-gradient(#4e97f8, #3579f7);
+  color: #fff;
+}
+
+.hw-p-app svg {
+  width: 15px;
+  height: 8px;
+}
+
+.hw-p-gear {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0 4px 0 auto;
+}
+
+/* The 8px gap between cards belongs to the card above it, so it closes with the card. */
+.hw-p-card {
+  margin: 0 10px 8px;
+  padding-bottom: 4px;
+  border-radius: 10px;
+  background: var(--p-card);
+  box-shadow: inset 0 0 0 1px var(--p-edge);
+}
+
+.hw-p-project {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px 3px;
+  color: var(--p-ink-2);
+  line-height: 13px;
+}
+
+.hw-p-project b,
+.hw-p-history b {
+  flex: none;
+  font-weight: 600;
+}
+
+.hw-p-path {
+  min-width: 0;
+  margin-left: auto;
+  padding-left: 2px;
+  font-size: 10px;
+}
+
+.hw-p-badge,
+.hw-p-chip {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 4px;
+  padding: 0 5px;
+  border-radius: 8px;
+  background: var(--p-badge);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-p-project .hw-p-badge {
+  margin-block: -1px;
+}
+
+.hw-p-badge svg {
+  width: 9px;
+  height: 9px;
+}
+
+.hw-p-row {
+  display: flex;
+  align-items: center;
+  padding: 6px 11px;
+}
+
+.hw-p-tile {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(color-mix(in srgb, var(--t), #fff 20%), var(--t));
+  color: #fff;
+  font: 700 10px / 1 ui-rounded, "SF Pro Rounded", var(--ui);
+}
+
+.hw-p-tile svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* NEW: started since you last looked. */
+.hw-p-tile i {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border: 1.5px solid var(--p-panel);
+  border-radius: 50%;
+  background: var(--p-blue);
+}
+
+.hw-p-favicon {
+  background: #fff;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.1);
+}
+
+.hw-p-favicon img {
+  border-radius: 50%;
+}
+
+.hw-t-next {
+  --t: var(--t-next);
+  color: var(--t-next-ink);
+}
+
+.hw-t-vite {
+  --t: #785dec;
+}
+
+.hw-t-express {
+  --t: #6d737e;
+}
+
+.hw-t-astro {
+  --t: #fa6b29;
+}
+
+.hw-t-storybook {
+  --t: #ff4785;
+}
+
+.hw-t-chi {
+  --t: #009ec7;
+}
+
+.hw-t-rails {
+  --t: #cc1f1f;
+}
+
+.hw-t-docker {
+  --t: #3262e4;
+}
+
+.hw-p-name {
+  flex: 1;
+  min-width: 0;
+  margin: 0 6px 0 10px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-name p + p,
+.hw-p-port p + p {
+  margin-top: 1px;
+}
+
+.hw-p-name b {
+  margin-right: 2px;
+  font-size: 13px;
+  line-height: 16px;
+  color: var(--p-ink);
+}
+
+.hw-p-name p:first-child,
+.hw-p-port p:first-child {
+  line-height: 16px;
+}
+
+.hw-p-port {
+  flex: none;
+  text-align: right;
+  color: var(--p-ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.hw-p-port p:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  /* Room for the arrow the app shows on hover. */
+  padding-right: 13px;
+}
+
+.hw-p-port b,
+.hw-p-other b {
+  font-size: 12px;
+  color: var(--p-ink);
+}
+
+.hw-p-chip {
+  gap: 3px;
+  padding-right: 4px;
+  background: var(--p-chip);
+  color: var(--p-ink-2);
+}
+
+.hw-p-chevron {
+  width: 4px;
+  height: 7px;
+}
+
+.hw-p-chip .hw-p-chevron {
+  transform: rotate(90deg);
+}
+
+.hw-p-slot {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 6px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-stopping .hw-p-tile {
+  opacity: 0.5;
+}
+
+.hw-p-stopping b {
+  color: var(--p-ink-2);
+}
+
+.hw-p-spinner {
+  width: 12px;
+  height: 12px;
+  animation: hw-spin 0.8s steps(8) infinite;
+}
+
+@keyframes hw-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.hw-p-other {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 50px 4px 45px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-other svg {
+  flex: none;
+  width: 9px;
+  height: 8px;
+  color: var(--p-ink-3);
+}
+
+.hw-p-other span {
+  flex: 1;
+  min-width: 0;
+}
+
+.hw-p-history {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 0;
+  padding: 8px 10px 7px;
+  color: var(--p-ink-2);
+}
+
+.hw-p-history .hw-p-chevron {
+  width: 5px;
+  height: 9px;
+  margin-right: 1px;
+}
+
+.hw-popover .hw-p-foot {
+  padding: 10px 18px 11px;
+  color: var(--p-ink-2);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* Rows and cards open and close. Only ones the demo adds get .hw-enter, so the first frame is still. */
+.hw-collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  transition:
+    grid-template-rows 0.3s cubic-bezier(0.2, 0, 0, 1),
+    opacity 0.3s;
+}
+
+.hw-collapse > div {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hw-leave {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+@starting-style {
+  .hw-enter {
+    grid-template-rows: 0fr;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hw-collapse {
+    transition: none;
+  }
+
+  .hw-p-spinner {
+    animation: none;
+  }
+}
+
+/* ---------- Windows ---------- */
+
+.hw-desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  max-width: 1240px;
+  margin: 48px auto 0;
+  padding: 0 12px;
+}
+
+.hw-win {
+  min-width: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--win);
+  box-shadow:
+    0 0 0 1px var(--edge),
+    var(--lift);
+}
+
+.hw-tbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 46px;
+  padding: 0 16px;
+  background: var(--title);
+  border-bottom: 1px solid var(--line);
+}
+
+.hw-tbar h2,
+.hw-tbar h3 {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.hw-lights {
+  display: flex;
+  flex: none;
+  gap: 8px;
+}
+
+.hw-lights i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--light);
+  box-shadow: inset 0 0 0 0.5px var(--edge);
+}
+
+/* Features: a settings list */
+.hw-features,
+.hw-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  min-width: 0;
+}
+
+.hw-col {
+  align-content: start;
+}
+
+.hw-form {
+  margin: 16px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: var(--well);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.hw-form > div {
+  padding: 14px 0 15px;
+}
+
+.hw-form > div + div {
+  border-top: 1px solid var(--line);
+}
+
+.hw-form h3 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.hw-form p {
+  max-width: 64ch;
+  margin-top: 1px;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.hw-states picture {
+  display: block;
+  background: var(--strip);
+}
+
+.hw-states img {
+  width: 100%;
+  max-width: 488px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.hw-states figcaption {
+  padding: 12px 20px 15px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
+}
+
+.hw-privacy {
+  padding: 18px 20px 4px;
+}
+
+.hw-privacy p {
+  font-size: 17px;
+  text-wrap: balance;
+}
+
+.hw-privacy p + p {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.hw-first {
+  padding: 16px 20px 22px;
+}
+
+.hw-first .hw-shot {
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow:
+    0 0 0 1px var(--edge),
+    0 8px 20px -10px rgba(10, 25, 60, 0.35);
+}
+
+/* What it detects: a Finder list */
+.hw table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hw thead th {
+  padding: 8px 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-align: left;
+}
+
+.hw thead th + th {
+  position: relative;
+  padding-left: 16px;
+}
+
+.hw thead th + th::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line);
+}
+
+.hw tbody th,
+.hw tbody td {
+  padding: 12px 20px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.hw tbody th {
+  width: 212px;
+  font-weight: 600;
+}
+
+.hw tbody td {
+  padding-left: 16px;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+
+.hw tbody tr:nth-child(odd) {
+  background: var(--stripe);
+}
+
+.hw-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hw-name svg {
+  flex: none;
+  width: 20px;
+  height: 16px;
+}
+
+.hw-status {
+  padding: 12px 20px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--title);
+  color: var(--ink-2);
+}
+
+@media (max-width: 719px) {
+  .hw thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .hw table,
+  .hw tbody,
+  .hw tr {
+    display: block;
+  }
+
+  .hw tr {
+    padding: 12px 16px 14px;
+  }
+
+  .hw tbody th,
+  .hw tbody td {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+    width: auto;
+    padding: 0;
+  }
+
+  .hw tbody td {
+    margin-top: 8px;
+  }
+
+  .hw tbody th::before,
+  .hw tbody td::before {
+    content: attr(data-label);
+    padding-top: 2px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.35;
+    color: var(--ink-2);
+  }
+
+  .hw-name svg {
+    display: none;
+  }
+}
+
+/* Get it: the open disk image. Its picture is light in both themes, as it is in Finder. */
+.hw-dmg {
+  --folder: #62c3f1;
+  --folder-back: #37a3dc;
+  /* Where the table starts, measured from the bottom. */
+  --table: 100px;
+  position: relative;
+  isolation: isolate;
+  padding: 32px 20px 24px;
+  background: linear-gradient(#fbfcfe, #e2eaf8);
+  color: #000;
+  font-size: 13px;
+  text-align: center;
+}
+
+.hw-dmg::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: var(--table);
+  background: linear-gradient(#2e76ee, #1c5bdb);
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.18);
+}
+
+.hw-drag {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 101px) 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.hw-drag img {
+  width: 112px;
+  height: 112px;
+}
+
+.hw-drag .hw-folder {
+  width: 104px;
+  height: 112px;
+  padding: 14px 0;
+}
+
+.hw-drag span {
+  display: block;
+  margin-top: 4px;
+}
+
+.hw-arrow {
+  width: 100%;
+  margin-bottom: 24px;
+  fill: #1f63e0;
+}
+
+.hw-arrow path {
+  fill: none;
+  stroke: #1f63e0;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 379px) {
+  .hw-drag img,
+  .hw-drag .hw-folder {
+    width: 84px;
+    height: 84px;
+  }
+
+  .hw-drag .hw-folder {
+    padding: 10px 0;
+  }
+}
+
+.hw-card {
+  max-width: 100%;
+  height: auto;
+  margin: 22px auto 0;
+}
+
+.hw-how {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 24px 24px 26px;
+  text-align: center;
+}
+
+.hw-how p {
+  margin-top: 12px;
+  color: var(--ink-2);
+  text-wrap: balance;
+}
+
+.hw-how p:first-child {
+  margin-top: 0;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.hw-how .hw-btn {
+  margin: 20px 0 8px;
+}
+
+@media (min-width: 980px) {
+  .hw-desk {
+    gap: 40px;
+    padding: 0 40px;
+  }
+
+  .hw-features {
+    grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .hw-features .hw-col:last-child {
+    margin-top: 56px;
+  }
+
+  .hw-list {
+    width: 94%;
+  }
+
+  /* The disk image window overlaps the Finder window, which leaves room for it. */
+  .hw-img {
+    position: relative;
+    justify-self: end;
+    width: 620px;
+    margin-top: -64px;
+  }
+
+  .hw-status {
+    padding-bottom: 40px;
+  }
+}
+
+/* ---------- Footer: the Dock ---------- */
+
+.hw-dock {
+  display: flex;
+  justify-content: center;
+  padding: 64px 12px 14px;
+}
+
+.hw-dock nav {
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 18px;
+  background: var(--bar);
+  box-shadow:
+    0 0 0 1px var(--edge),
+    var(--lift);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hw-dock a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.hw .hw-dock a {
+  color: var(--bar-ink);
+}
+
+.hw-dock a:hover {
+  background: var(--pressed);
+}
+
+.hw .hw-dock a:focus-visible {
+  border-radius: 12px;
+  outline-offset: -2px;
+}

@@ -84,6 +84,10 @@ body {
   margin-left: clamp(8px, 3vw, 40px);
 }
 
+.tagline span {
+  display: block;
+}
+
 .links {
   display: flex;
   flex-wrap: wrap;
@@ -171,6 +175,10 @@ body {
 }
 
 @media (max-width: 480px) {
+  /* too narrow for a sentence per line, so let it flow */
+  .tagline span {
+    display: inline;
+  }
   .email {
     width: 100%;
   }
