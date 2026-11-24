@@ -532,7 +532,7 @@ body:has(> .cc) {
   opacity: 0.9;
 }
 
-/* Closing download card: the header's dark half again, small. */
+/* Second download card: the header's dark half again, small. */
 .cc-get {
   display: flex;
   flex-wrap: wrap;
