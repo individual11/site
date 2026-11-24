@@ -2,7 +2,7 @@
 title: Find New Roads
 client: Chevrolet
 year: 2016
-role: ACD / Copywriter
+role: ACD / Copywriter, The Martin Agency
 summary: A gas pump that read your social posts and paid you in gallons.
 featured: true
 video: https://vimeo.com/1249201890

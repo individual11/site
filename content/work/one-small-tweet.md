@@ -2,7 +2,7 @@
 title: One Small Tweet
 client: John F. Kennedy Presidential Library
 year: 2012
-role: Martin Lab, The Martin Agency
+role: Technical Director, Martin Lab
 summary: Tweets that flew Neil Armstrong back to the moon one last time.
 featured: true
 video: https://vimeo.com/79638832

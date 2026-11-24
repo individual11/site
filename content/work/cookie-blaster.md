@@ -1,7 +1,8 @@
 ---
 title: Cookie Blaster
+client: The Martin Agency
 year: 2013
-role: Creator
+role: Creator, The Martin Agency
 summary: A catapult that watches your face and fires a cookie when you open your mouth.
 featured: true
 video: https://vimeo.com/1249202075

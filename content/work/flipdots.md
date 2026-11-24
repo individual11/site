@@ -2,7 +2,7 @@
 title: FlipDots
 client: Martin Lab
 year: 2012-2014
-role: Founder, Martin Lab
+role: Creative and Technical Director, Martin Lab
 summary: We inherited a giant flip-dot board, so I built the tools to make it do things.
 featured: true
 tech:
