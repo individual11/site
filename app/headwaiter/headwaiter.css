@@ -113,6 +113,15 @@ body:has(> .hw) {
   white-space: nowrap;
 }
 
+/* For screen readers only. */
+.hw-say {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
 /* ---------- Wallpaper ---------- */
 
 .hw-paper {
@@ -994,46 +1003,93 @@ body:has(> .hw) {
   }
 }
 
-/* Get it: the open disk image */
+/* Get it: the open disk image. Its picture is light in both themes, as it is in Finder. */
 .hw-dmg {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  justify-items: center;
-  max-width: 460px;
-  margin: 0 auto;
-  padding: 34px 20px 6px;
+  --folder: #62c3f1;
+  --folder-back: #37a3dc;
+  /* Where the table starts, measured from the bottom. */
+  --table: 100px;
+  position: relative;
+  isolation: isolate;
+  padding: 32px 20px 24px;
+  background: linear-gradient(#fbfcfe, #e2eaf8);
+  color: #000;
   font-size: 13px;
   text-align: center;
 }
 
-.hw-dmg img {
+.hw-dmg::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: -1;
+  height: var(--table);
+  background: linear-gradient(#2e76ee, #1c5bdb);
+  box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.18);
+}
+
+.hw-drag {
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 101px) 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 8px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.hw-drag img {
   width: 112px;
   height: 112px;
 }
 
-.hw-dmg .hw-folder {
+.hw-drag .hw-folder {
   width: 104px;
   height: 112px;
   padding: 14px 0;
 }
 
-.hw-dmg span {
+.hw-drag span {
   display: block;
   margin-top: 4px;
 }
 
-.hw-dmg .hw-arrow {
-  width: 56px;
-  height: 24px;
+.hw-arrow {
+  width: 100%;
   margin-bottom: 24px;
-  color: var(--ink-2);
+  fill: #1f63e0;
+}
+
+.hw-arrow path {
+  fill: none;
+  stroke: #1f63e0;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 379px) {
+  .hw-drag img,
+  .hw-drag .hw-folder {
+    width: 84px;
+    height: 84px;
+  }
+
+  .hw-drag .hw-folder {
+    padding: 10px 0;
+  }
+}
+
+.hw-card {
+  max-width: 100%;
+  height: auto;
+  margin: 22px auto 0;
 }
 
 .hw-how {
   max-width: 540px;
   margin: 0 auto;
-  padding: 18px 24px 26px;
+  padding: 24px 24px 26px;
   text-align: center;
 }
 
