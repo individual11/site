@@ -1,6 +1,6 @@
 """Copy curated portfolio media from the archive into public/work.
 
-Usage (macOS; needs sips, qlmanage and avconvert, which ship with the OS):
+Usage (macOS; needs sips, qlmanage and avconvert, which ship with the OS, and swift from Xcode):
     python3 -I scripts/work-media/process.py            # uses plan.json next to this file
 Edit plan.json to change which photos/clips each project uses, then re-run.
 Re-running re-encodes everything, so revert files you didn't mean to change
@@ -8,7 +8,8 @@ Re-running re-encodes everything, so revert files you didn't mean to change
 
 Images: rotate per EXIF, resize to 1600px long edge, JPEG q78, strip all
 metadata (EXIF incl. GPS). Videos: short muted-autoplay loops via avconvert
-(which filters privacy metadata by default) plus a poster frame.
+(which filters privacy metadata by default), audio track removed, plus a
+poster frame.
 Writes lib/work-media.ts.
 """
 import json, os, struct, subprocess, sys, shutil, tempfile
@@ -89,6 +90,9 @@ def loop(src, dest, start, dur):
     s = os.path.join(SRC, src)
     subprocess.run(["avconvert", "-s", s, "-o", dest, "-p", "Preset960x540", "--start", str(start),
                     "--duration", str(dur), "--replace"], check=True, capture_output=True)
+    silent = os.path.join(TMP, "silent.mp4")
+    subprocess.run(["swift", os.path.join(HERE, "strip-audio.swift"), dest, silent], check=True, capture_output=True)
+    shutil.move(silent, dest)
     poster = dest.replace(".mp4", "-poster.jpg")
     qd = os.path.join(TMP, "q")
     shutil.rmtree(qd, ignore_errors=True)

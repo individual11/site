@@ -22,7 +22,7 @@ links:
 
 You write one element per line and tsquare draws the board: phones, tablets and desktops side by side, arrows between screens, sticky notes for the open questions. It's named after the drafting tool.
 
-I built it for models to write. Before settling on a syntax I put 20 wireframe requests through Sonnet and Haiku in three formats. The text used about a quarter of the tokens JSON did, and Sonnet got all 20 valid on the first try. Haiku didn't. Errors come back with line numbers, and after one round of fixes Haiku was at 19 or 20 too.
+I built it for models to write. Before settling on a syntax I put 20 wireframe requests through Sonnet and Haiku in three formats. The text used about a quarter of the tokens JSON did, and Sonnet got all 20 valid on the first try. Haiku didn't. Errors come back with line numbers so a model can fix its own mistakes. In later tests, one round of fixes got every run to 19 or 20, on both models.
 
 Everything is grayscale with one accent color, on purpose. It's a wireframe.
 

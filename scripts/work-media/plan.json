@@ -271,6 +271,26 @@
       ]
     ]
   },
+  "headwaiter": {
+    "images": [
+      [
+        "repo:assets/headwaiter/work-hero.jpg",
+        "Headwaiter's page: the bow tie icon and name on the left, and the popover hanging from the menu bar with seven servers grouped by project"
+      ],
+      [
+        "repo:assets/headwaiter/work-dmg.png",
+        "Headwaiter's install window: the app icon, an arrow to the Applications folder, and a place card that says Your server will be right with you"
+      ],
+      [
+        "repo:assets/headwaiter/work-list.png",
+        "The Headwaiter popover with nine servers. One is stopping and one is a Git worktree with its own card"
+      ],
+      [
+        "repo:assets/headwaiter/work-filter.png",
+        "The Headwaiter popover filtered to four matches for shop, with the first one selected"
+      ]
+    ]
+  },
   "walmart-mobile": {
     "images": [
       [

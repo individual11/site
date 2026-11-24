@@ -372,6 +372,34 @@ export const WORK_MEDIA: Record<string, { images: WorkImage[]; loop?: WorkLoop }
       }
     ]
   },
+  "headwaiter": {
+    "images": [
+      {
+        "src": "/work/headwaiter/01.jpg",
+        "width": 1600,
+        "height": 1000,
+        "alt": "Headwaiter's page: the bow tie icon and name on the left, and the popover hanging from the menu bar with seven servers grouped by project"
+      },
+      {
+        "src": "/work/headwaiter/02.jpg",
+        "width": 1600,
+        "height": 1005,
+        "alt": "Headwaiter's install window: the app icon, an arrow to the Applications folder, and a place card that says Your server will be right with you"
+      },
+      {
+        "src": "/work/headwaiter/03.jpg",
+        "width": 889,
+        "height": 1600,
+        "alt": "The Headwaiter popover with nine servers. One is stopping and one is a Git worktree with its own card"
+      },
+      {
+        "src": "/work/headwaiter/04.jpg",
+        "width": 1400,
+        "height": 1600,
+        "alt": "The Headwaiter popover filtered to four matches for shop, with the first one selected"
+      }
+    ]
+  },
   "walmart-mobile": {
     "images": [
       {
