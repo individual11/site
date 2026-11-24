@@ -1,0 +1,336 @@
+{
+  "donate-life": {
+    "images": [
+      [
+        "Donate Life Mural_Cropped.4VH5d copy (1).jpg",
+        "Mural of a man in a pink robe holding a bat, next to the line: Even this guy can save a life. registerme.org"
+      ]
+    ],
+    "poster": [
+      "World's Biggest Asshole_Donate Life.mov",
+      135,
+      8,
+      "Still from The World's Biggest Asshole: Coleman Sweeney in his robe, being himself"
+    ]
+  },
+  "find-new-roads": {
+    "poster": [
+      "Chevy Pump Case Short edit 04_1.mp4",
+      30,
+      8,
+      "Still from the Find New Roads case video"
+    ]
+  },
+  "buddy": {
+    "images": [
+      [
+        "repo:assets/buddy/home.jpg",
+        "buddy.insure home page: Ship Insurance Fast, with Allstate, Aon, Berkley, Chubb, Great American and Starr logos"
+      ],
+      [
+        "repo:assets/buddy/mcp-engine.jpg",
+        "Buddy MCP page: the AI converses, the engine decides"
+      ],
+      [
+        "repo:assets/buddy/mcp-grounded.jpg",
+        "Buddy MCP answering a coverage question from the actual policy, with the section cited"
+      ],
+      [
+        "repo:assets/buddy/mcp-embed.jpg",
+        "Buddy's embeddable insurance chat, branded for the partner"
+      ],
+      [
+        "repo:assets/buddy/metrics.jpg",
+        "Comparison table: 7 days to integrate with Buddy against 6 to 12 months industry standard"
+      ]
+    ]
+  },
+  "tsquare": {
+    "images": [
+      [
+        "repo:assets/tsquare/playground-flow.jpg",
+        "tsquare playground: the text of a sign-up flow on the left, the three phone screens it draws on the right, joined by arrows"
+      ],
+      [
+        "repo:assets/tsquare/home.jpg",
+        "tsquare.dev home page: Wireframes in plain text, with a live example under the logo"
+      ],
+      [
+        "repo:assets/tsquare/playground-dashboard.jpg",
+        "tsquare playground drawing a desktop analytics dashboard from 32 lines of text"
+      ],
+      [
+        "repo:assets/tsquare/components.jpg",
+        "tsquare component catalog: the board component with its example, its props and the text that draws it"
+      ]
+    ],
+    "loop": [
+      "../experiments/wireframe/video/out/teaser-16x9-v3.mp4",
+      7,
+      6.9,
+      "Clip from the tsquare teaser: text types itself on the left while the wireframe builds on the right"
+    ]
+  },
+  "microsoft-store": {
+    "images": [
+      [
+        "work/MS/newPics/_IMG_5307_2.jpg",
+        "Crowds lining up outside the first Microsoft Store on launch day"
+      ],
+      [
+        "work/MS/newPics/_IMG_5284_2.jpg",
+        "Inside the Microsoft Store with the wraparound video wall"
+      ],
+      [
+        "work/MS/newPics/IMG_5422_2.jpg",
+        "The video wall running launch content"
+      ],
+      [
+        "work/MS/newPics/IMG_5540_2.jpg",
+        "Shoppers under the video wall"
+      ]
+    ],
+    "poster": [
+      "work/MS/31514197.mov",
+      20,
+      8,
+      "The wraparound video wall"
+    ]
+  },
+  "light-of-human-kindness": {
+    "images": [
+      [
+        "work/lohk/at_the_wall/the_wall_2.jpg",
+        "Hamilton Glass's mural over the words of kindness on the old GRTC bus depot"
+      ],
+      [
+        "work/lohk/at_the_wall/fellas_at_the_wall_1.jpg",
+        "The crew at the wall"
+      ],
+      [
+        "work/lohk/testing_the_lights/rainbow_lights.png",
+        "Testing the LED pods in rainbow colours"
+      ],
+      [
+        "work/lohk/testing_the_lights/writing_code.png",
+        "Writing the light controller code next to strings of LED pods"
+      ]
+    ],
+    "poster": [
+      "work/lohk/LOHK_YouTube_V4_720p.mp4",
+      110,
+      8,
+      "Still from the Light of Human Kindness video"
+    ]
+  },
+  "flipdots": {
+    "images": [
+      [
+        "work/FlipDots/IMG_1398.JPG",
+        "A space invader drawn on the flip-dot board in an office hallway"
+      ],
+      [
+        "work/FlipDots/IMG_1187.JPG",
+        "The board reading: The hackathon continues"
+      ],
+      [
+        "work/FlipDots/IMG_0285.JPG",
+        "Rebuilding the board on a table propped up with red cups"
+      ],
+      [
+        "__LAB__/__ARTICLES__/screengrabs_for_lab_article/Screen Shot 2013-05-08 at 10.48.19 AM.png",
+        "Dots Maker, the desktop app for drawing frames for the board"
+      ],
+      [
+        "__LAB__/__ARTICLES__/screengrabs_for_lab_article/Screen Shot 2013-05-08 at 10.06.19 AM.png",
+        "The FlipDots web controller"
+      ]
+    ],
+    "loop": [
+      "work/FlipDots/IMG_8646.MOV",
+      10,
+      8,
+      "Close-up of the dots flipping"
+    ]
+  },
+  "one-small-tweet": {
+    "images": [
+      [
+        "Sites/individual11/_/img/projectImages/ost/ost_0.jpg",
+        "One Small Tweet: tweets carrying a rocket from Earth to the moon"
+      ],
+      [
+        "Sites/individual11/_/img/projectImages/ost/ost_1.jpg",
+        "One Small Tweet site"
+      ],
+      [
+        "Sites/individual11/_/img/projectImages/ost/ost_2.jpg",
+        "One Small Tweet site"
+      ],
+      [
+        "Sites/individual11/_/img/projectImages/ost/ost_3.jpg",
+        "One Small Tweet site"
+      ]
+    ]
+  },
+  "cookie-blaster": {
+    "images": [
+      [
+        "work/cookie blaster/IMG_2012.JPG",
+        "Arduino, breadboard and servos under the 3D-printed launcher"
+      ],
+      [
+        "work/cookie blaster/IMG_2126.JPG",
+        "The 3D-printed catapult arm with rubber bands"
+      ],
+      [
+        "work/cookie blaster/IMG_1911.JPG",
+        "Early servo test on a breadboard"
+      ]
+    ],
+    "poster": [
+      "work/cookie blaster/cookie_blaster.mov",
+      45,
+      8,
+      "The Cookie Blaster firing a cookie"
+    ]
+  },
+  "lorenz-attractor": {
+    "images": [
+      [
+        "work/lorenAttractor/blue_0_large.jpg",
+        "Lorenz attractor print: dense white loops on blue"
+      ],
+      [
+        "work/lorenAttractor/gray_1_large.jpg",
+        "Lorenz attractor print: glowing blue loops on gray"
+      ],
+      [
+        "work/lorenAttractor/blue_1_large.jpg",
+        "Lorenz attractor print: wide open rings on blue"
+      ],
+      [
+        "work/lorenAttractor/gray_0_large.jpg",
+        "Lorenz attractor print: wide open rings on gray"
+      ],
+      [
+        "work/lorenAttractor/blue_3_large.jpg",
+        "Lorenz attractor print: tight figure eight on blue"
+      ],
+      [
+        "work/lorenAttractor/gray_3_large.jpg",
+        "Lorenz attractor print: tight figure eight on gray"
+      ],
+      [
+        "work/lorenAttractor/blue_2_large.jpg",
+        "Lorenz attractor print: a single trailing loop on blue"
+      ],
+      [
+        "work/lorenAttractor/gray_2_large.jpg",
+        "Lorenz attractor print: a single trailing loop on gray"
+      ],
+      [
+        "work/lorenAttractor/lorenz_ss.jpg",
+        "The Processing tool for tuning the attractor and exporting vector PDFs"
+      ]
+    ]
+  },
+  "birds": {
+    "images": [
+      [
+        "work/birds/birds_flyer.jpg",
+        "BIRDS flyer: an interactive behavior model, Friday February 5th at Gallery 5"
+      ],
+      [
+        "work/birds/birds_24x36.png",
+        "BIRDS poster"
+      ]
+    ]
+  },
+  "coffitivity": {
+    "images": [
+      [
+        "work/Coffitivity/screen_1_full.png",
+        "Coffitivity running in the Mac menu bar"
+      ],
+      [
+        "work/Coffitivity/screen_2_full.png",
+        "Coffitivity preferences"
+      ]
+    ]
+  },
+  "my-story": {
+    "images": [
+      [
+        "work/My-Story/images/Screen shot 2010-11-21 at 21.39.03.png",
+        "This Is My Story: a viewer's face composited into a film"
+      ],
+      [
+        "work/My-Story/images/Screen shot 2010-11-21 at 21.37.49.png",
+        "This Is My Story site"
+      ]
+    ]
+  },
+  "headwaiter": {
+    "images": [
+      [
+        "repo:assets/headwaiter/work-hero.jpg",
+        "Headwaiter's page: the bow tie icon and name on the left, and the popover hanging from the menu bar with seven servers grouped by project"
+      ],
+      [
+        "repo:assets/headwaiter/work-dmg.png",
+        "Headwaiter's install window: the app icon, an arrow to the Applications folder, and a place card that says Your server will be right with you"
+      ],
+      [
+        "repo:assets/headwaiter/work-list.png",
+        "The Headwaiter popover with nine servers. One is stopping and one is a Git worktree with its own card"
+      ],
+      [
+        "repo:assets/headwaiter/work-filter.png",
+        "The Headwaiter popover filtered to four matches for shop, with the first one selected"
+      ]
+    ]
+  },
+  "walmart-mobile": {
+    "images": [
+      [
+        "work/walmart/phone/3519227780_50473b8f42_o.jpg",
+        "Walmart's mobile site on an original iPhone"
+      ],
+      [
+        "work/walmart/phone/3812144161_146d95d586_o.png",
+        "Walmart mobile site screens"
+      ]
+    ]
+  },
+  "xmas-ornaments": {
+    "images": [
+      [
+        "work/XmasOrnaments/IMG_6094.JPG",
+        "Finished ornaments in a tray"
+      ],
+      [
+        "work/XmasOrnaments/IMG_6258.JPG",
+        "The robot painting an ornament, seen on a camera screen"
+      ]
+    ],
+    "poster": [
+      "work/XmasOrnaments/IMG_6082.MOV",
+      3,
+      8,
+      "The robotic egg painter drawing on an ornament"
+    ]
+  },
+  "modern-chess-clock": {
+    "images": [
+      [
+        "repo:assets/chess-clock/game.jpg",
+        "Modern Chess Clock mid-game"
+      ],
+      [
+        "repo:assets/chess-clock/start.jpg",
+        "Modern Chess Clock start screen"
+      ]
+    ]
+  }
+}

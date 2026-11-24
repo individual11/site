@@ -1,0 +1,21 @@
+# Display order for /work: one project file name per line (no .md).
+# Move a line to reorder. Put # in front of a line to hide that project.
+# Format help: content/work/README.md
+
+buddy
+tsquare
+donate-life
+find-new-roads
+microsoft-store
+light-of-human-kindness
+flipdots
+one-small-tweet
+cookie-blaster
+headwaiter
+walmart-mobile
+lorenz-attractor
+birds
+coffitivity
+my-story
+xmas-ornaments
+modern-chess-clock
