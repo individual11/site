@@ -2,6 +2,7 @@
 title: Robot-Painted Ornaments
 client: The Martin Agency
 year: 2014
+role: Creative Director, The Martin Agency
 summary: 600+ custom ornaments, painted one at a time by a robot.
 featured: false
 video: https://vimeo.com/119176720
