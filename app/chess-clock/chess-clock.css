@@ -6,9 +6,30 @@
  * Everything is scoped under .cc so the homepage styles are untouched.
  */
 
-/* Overscroll at the top and bottom shows the dark header/footer colour. */
+/*
+ * Overscroll colour: dark while the header is up top, light by the end of the
+ * page, so pulling past the footer doesn't look like more footer.
+ */
 body:has(> .cc) {
-  background: #212e3d;
+  background: #f2f2f2;
+}
+
+@supports (animation-timeline: scroll()) {
+  body:has(> .cc) {
+    animation: cc-canvas linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
+@keyframes cc-canvas {
+  0%,
+  49% {
+    background-color: #212e3d;
+  }
+  50%,
+  100% {
+    background-color: #f2f2f2;
+  }
 }
 
 .cc {
@@ -177,6 +198,8 @@ body:has(> .cc) {
 /* ---------- Screens sit across the split ---------- */
 
 .cc-split {
+  /* Overlaps the header: at fractional heights a hairline showed between them. */
+  margin-top: -1px;
   background: linear-gradient(var(--dark) 0 50%, var(--light) 50% 100%);
 }
 
@@ -185,7 +208,8 @@ body:has(> .cc) {
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 0 var(--gutter) 8px;
+  /* Room for the outline above and the shadow below, which the scroller clips. */
+  padding: 2px var(--gutter) 44px;
   max-width: 1040px;
   margin: 0 auto;
   scrollbar-width: none;
@@ -198,11 +222,13 @@ body:has(> .cc) {
 .cc-shots figure {
   flex: 0 0 62%;
   scroll-snap-align: center;
+  scroll-snap-stop: always; /* one swipe, one screen */
 }
 
 @media (min-width: 720px) {
   .cc-shots {
     overflow: visible;
+    padding-bottom: 8px;
   }
   .cc-shots figure {
     flex: 1 1 0;
@@ -217,7 +243,7 @@ body:has(> .cc) {
   border-radius: 26px;
   background: var(--light);
   box-shadow:
-    0 0 0 1px rgba(33, 46, 61, 0.18),
+    0 0 0 1px rgba(127, 137, 150, 0.5),
     0 18px 40px -18px rgba(10, 16, 24, 0.45);
 }
 
@@ -232,6 +258,52 @@ body:has(> .cc) {
   text-align: center;
   font-size: 13px;
   color: var(--muted-on-light);
+}
+
+/* Phones: a segmented control names the four screens, in place of the captions. */
+.cc-seg {
+  display: flex;
+  padding: 3px;
+  border-radius: 12px;
+  background: rgba(33, 46, 61, 0.1);
+}
+
+.cc-seg button {
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  color: var(--dark);
+  font: 500 14px/1.2 var(--font);
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.cc-seg button[aria-current="true"] {
+  background: var(--dark);
+  color: var(--light);
+}
+
+.cc-seg button:focus-visible {
+  outline: 2px solid var(--dark);
+  outline-offset: 2px;
+}
+
+@media (max-width: 719.98px) {
+  .cc-shots figcaption {
+    display: none;
+  }
+}
+
+@media (min-width: 720px) {
+  .cc-picker {
+    display: none;
+  }
 }
 
 /* ---------- Bottom half: the white player's side ---------- */
@@ -460,6 +532,57 @@ body:has(> .cc) {
   opacity: 0.9;
 }
 
+/* Second download card: the header's dark half again, small. */
+.cc-get {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 20px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--dark);
+  color: var(--light);
+}
+
+.cc-get-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 15px;
+  box-shadow: 0 0 0 1px rgba(242, 242, 242, 0.12);
+}
+
+.cc-get-text {
+  flex: 1 1 0;
+}
+
+.cc-get h2 {
+  margin-bottom: 2px;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.cc-get p {
+  font-size: 15px;
+  color: var(--muted-on-dark);
+}
+
+.cc-get .cc-store {
+  margin-top: 0;
+}
+
+@media (max-width: 719.98px) {
+  .cc-get .cc-store {
+    flex: 1 0 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 720px) {
+  .cc-get {
+    padding: 28px 32px;
+  }
+}
+
 /* Privacy policy text. */
 .cc-prose section {
   padding-top: 48px;
@@ -473,9 +596,9 @@ body:has(> .cc) {
 /* ---------- Footer ---------- */
 
 .cc-footer {
-  margin-top: 88px;
-  background: var(--dark);
-  color: var(--muted-on-dark);
+  margin-top: 64px;
+  border-top: 1px solid var(--rule);
+  color: var(--muted-on-light);
   font-size: 13px;
 }
 
@@ -493,11 +616,12 @@ body:has(> .cc) {
 }
 
 .cc-footer a:hover {
-  color: var(--light);
+  color: var(--dark);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cc-store,
+  .cc-seg button,
   .cc summary::after {
     transition: none;
   }

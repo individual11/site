@@ -7,6 +7,7 @@ import shotGame from "@/assets/chess-clock/game.jpg";
 import shotSettings from "@/assets/chess-clock/settings.jpg";
 import shotGameOver from "@/assets/chess-clock/game-over.jpg";
 import { APP_NAME, APP_STORE_ID, APP_TAGLINE, Footer, StoreButton, SUPPORT_EMAIL } from "./_shared";
+import { Shots } from "./_shots";
 
 export const metadata: Metadata = {
   title: `${APP_NAME}: Support`,
@@ -76,16 +77,7 @@ export default function ChessClockSupport() {
         </div>
       </header>
 
-      <div className="cc-split">
-        <div className="cc-shots">
-          {SHOTS.map((s) => (
-            <figure key={s.caption}>
-              <Image src={s.src} alt={s.alt} sizes="(min-width: 720px) 240px, 62vw" />
-              <figcaption>{s.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
+      <Shots shots={SHOTS} />
 
       <main className="cc-wrap">
         <section aria-labelledby="features">
@@ -173,6 +165,17 @@ export default function ChessClockSupport() {
               .
             </p>
           </details>
+        </section>
+
+        <section aria-labelledby="get">
+          <div className="cc-get">
+            <Image className="cc-get-icon" src={icon} alt="" sizes="64px" />
+            <div className="cc-get-text">
+              <h2 id="get">{APP_NAME}</h2>
+              <p>Free on iPhone and iPad.</p>
+            </div>
+            <StoreButton />
+          </div>
         </section>
 
         <section className="cc-two">
