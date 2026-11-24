@@ -6,8 +6,9 @@ import welcomeLight from "@/assets/headwaiter/welcome-light.webp";
 import welcomeDark from "@/assets/headwaiter/welcome-dark.webp";
 import statesLight from "@/assets/headwaiter/menubar-states-light.webp";
 import statesDark from "@/assets/headwaiter/menubar-states-dark.webp";
+import placeCard from "@/assets/headwaiter/place-card.svg";
 import { LivePopover, MenuBarItem } from "./_demo";
-import { Folder, Shot, TitleBar, Wallpaper } from "./_parts";
+import { Folder, Keys, Shot, TitleBar, Wallpaper } from "./_parts";
 
 const APP_NAME = "Headwaiter";
 const TITLE = "Headwaiter: keep track of the servers running on your Mac";
@@ -47,6 +48,13 @@ const FEATURES: [string, React.ReactNode][] = [
     </>,
   ],
   [
+    "From the keyboard",
+    <>
+      Type to filter by name, project, framework or port. Press Return to open a server,{" "}
+      <Keys symbols="⌘C" say="Command-C" /> to copy its URL or <Keys symbols="⌘⌫" say="Command-Delete" /> to stop it.
+    </>,
+  ],
+  [
     "Worktrees and agents",
     "Git worktrees get their own cards, so you can tell apart servers started from different branches.",
   ],
@@ -54,6 +62,14 @@ const FEATURES: [string, React.ReactNode][] = [
   [
     "Docker too",
     "Containers with published ports appear alongside your other servers. Compose containers join their project.",
+  ],
+  [
+    "Finder and terminal",
+    "Reveal a server's folder in Finder, or open it in the terminal you choose in Settings.",
+  ],
+  [
+    "Notifications and log",
+    "Get notified when a server starts, or stops without you stopping it. Keep a log of starts and stops on your Mac. Both are off by default.",
   ],
 ];
 
@@ -128,18 +144,6 @@ export default function Headwaiter() {
                   ))}
                 </div>
               </div>
-              <figure className="hw-win hw-states">
-                <Shot
-                  light={statesLight}
-                  dark={statesDark}
-                  alt="Headwaiter's menu bar icon in five states: dimmed, dimmed with a dot, with a count of 3, with 3 and a dot, and with 12 and a dot."
-                  lazy
-                />
-                <figcaption>
-                  Dimmed when nothing&apos;s running. A count when something is. A dot when something changed since you
-                  last looked.
-                </figcaption>
-              </figure>
             </div>
             <div className="hw-col">
               <div className="hw-win">
@@ -163,6 +167,18 @@ export default function Headwaiter() {
                   />
                 </div>
               </div>
+              <figure className="hw-win hw-states">
+                <Shot
+                  light={statesLight}
+                  dark={statesDark}
+                  alt="Headwaiter's menu bar icon in five states: dimmed, dimmed with a dot, with a count of 3, with 3 and a dot, and with 12 and a dot."
+                  lazy
+                />
+                <figcaption>
+                  Dimmed when nothing&apos;s running. A count when something is. A dot when something changed since you
+                  last looked.
+                </figcaption>
+              </figure>
             </div>
           </section>
 
@@ -208,26 +224,33 @@ export default function Headwaiter() {
             <TitleBar>
               <h2 id="get">Get it</h2>
             </TitleBar>
-            <div className="hw-dmg" aria-hidden="true">
-              <div>
-                <Image src={icon} alt="" sizes="112px" />
-                <span>Headwaiter</span>
+            {/* The download's own window, from scripts/dmg-background.swift in the Headwaiter repo. */}
+            <div className="hw-dmg">
+              <div className="hw-drag" aria-hidden="true">
+                <div>
+                  <Image src={icon} alt="" sizes="112px" />
+                  <span>Headwaiter</span>
+                </div>
+                <svg className="hw-arrow" viewBox="0 0 101 24">
+                  {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+                    <circle key={i} cx={3 + i * 12} cy="12" r="2.5" opacity={0.25 + i * 0.11} />
+                  ))}
+                  <path d="M89 3l9 9-9 9" />
+                </svg>
+                <div>
+                  <Folder className="hw-folder" />
+                  <span>Applications</span>
+                </div>
               </div>
-              <svg
-                className="hw-arrow"
-                viewBox="0 0 56 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M3 12h48M41 3l10 9-10 9" />
-              </svg>
-              <div>
-                <Folder className="hw-folder" />
-                <span>Applications</span>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element -- an SVG, which the image optimizer skips */}
+              <img
+                className="hw-card"
+                src={placeCard.src}
+                width={placeCard.width}
+                height={placeCard.height}
+                loading="lazy"
+                alt="A place card on a table: Your server will be right with you."
+              />
             </div>
             <div className="hw-how">
               <p>

@@ -33,6 +33,16 @@ export function Folder({ className }: { className?: string }) {
   );
 }
 
+/** A keyboard shortcut. Screen readers get words, since they read symbols like ⌫ inconsistently. */
+export function Keys({ symbols, say }: { symbols: string; say: string }) {
+  return (
+    <span className="hw-nw">
+      <span aria-hidden="true">{symbols}</span>
+      <span className="hw-say">{say}</span>
+    </span>
+  );
+}
+
 /** Title bar of an inactive window: the popover has focus, so the window controls are gray. */
 export function TitleBar({ children }: { children: React.ReactNode }) {
   return (
