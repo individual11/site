@@ -222,6 +222,7 @@ body:has(> .cc) {
 .cc-shots figure {
   flex: 0 0 62%;
   scroll-snap-align: center;
+  scroll-snap-stop: always; /* one swipe, one screen */
 }
 
 @media (min-width: 720px) {
