@@ -7,6 +7,7 @@ import shotGame from "@/assets/chess-clock/game.jpg";
 import shotSettings from "@/assets/chess-clock/settings.jpg";
 import shotGameOver from "@/assets/chess-clock/game-over.jpg";
 import { APP_NAME, APP_STORE_ID, APP_TAGLINE, Footer, StoreButton, SUPPORT_EMAIL } from "./_shared";
+import { Shots } from "./_shots";
 
 export const metadata: Metadata = {
   title: `${APP_NAME}: Support`,
@@ -76,16 +77,7 @@ export default function ChessClockSupport() {
         </div>
       </header>
 
-      <div className="cc-split">
-        <div className="cc-shots">
-          {SHOTS.map((s) => (
-            <figure key={s.caption}>
-              <Image src={s.src} alt={s.alt} sizes="(min-width: 720px) 240px, 62vw" />
-              <figcaption>{s.caption}</figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
+      <Shots shots={SHOTS} />
 
       <main className="cc-wrap">
         <section aria-labelledby="features">
